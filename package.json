@@ -1,0 +1,29 @@
+{
+  "name": "react-world",
+  "version": "1.0.0",
+  "description": "This is Namaste React by SKReddySasi",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SKReddySasi/React-World.git"
+  },
+  "author": "S K Reddy Sasi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SKReddySasi/React-World/issues"
+  },
+  "homepage": "https://github.com/SKReddySasi/React-World#readme",
+  "devDependencies": {
+    "parcel": "^2.8.3",
+    "process": "^0.11.10"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "browsersList": [
+    "last 2 versions"
+  ]
+}
