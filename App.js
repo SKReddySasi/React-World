@@ -1,17 +1,28 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
+import React from "react";
+import ReactDOM from "react-dom/client";
 
-
-const parent = React.createElement("div", { id: "parent" }, [
-  React.createElement("div", { id: "child" }, [
-    React.createElement("h1", {className: 'heading'}, "This is Namaste React"),
-    React.createElement("h2", {}, "By - S K Reddy Sasi"),
-  ]),
-  React.createElement("div", { id: "child2" }, [
-    React.createElement("h2", {className: 'notes'}, "please check the notes for this Episode in 'Notes.text' file"),
-  ]),
-]);
+const Title = () => (
+  <div>
+    <h1 className="heading" tabIndex="5">
+      Namaste React Using JSX
+    </h1>
+  </div>
+);
+const HeadingComponent = () => {
+  return (
+    <div id="container">
+      <Title />
+      <h1>This Is Functional Component</h1>
+      <h2>In this Episode We have Learned</h2>
+      <ul>
+        <li><b>JSX</b> - HTML-like or XML-like syntax </li>
+        <li><b>Component Composition</b> - A "Component" inside another "Component"  is known as Component Composition.</li>
+        <li><b>React Fragment</b> - Behaves like a Empty Tag</li>
+      </ul>
+    </div>
+  );
+};
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-root.render(parent);
+root.render(<HeadingComponent />);

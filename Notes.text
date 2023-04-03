@@ -1,72 +1,16 @@
-- Q1)  If u want to make fast production ready app, Can only React can itself make that?
+- npm start = npm run start
 
-    - No, 
-        - There are lot of other packages and lot of other Libraries that required to make our production ready app.
-        - (Lot of Javascript Code that some developers had written - makes our code "Fast" and "Scalable" and "Production Ready App).
+- JSX - not HTML in JS
 
-- Q2) The most important Package in our project is what?
+- *** JSX -- HTML-like or XML-like syntax 
 
-    - It is a "Bundler"
+- If we have to use attributes in JSX, we need to use camelcase
 
-- Q3) What is a Bundler?
+- Component Composition - A "Component" inside another "Component"  is known as Component Composition.
 
-    - When we have these normal HTML, CSS, JS files... 
+- <Ttile /> === <Title></Title>
 
-        - Our whole code needs to be "Bundled" 
-        - Our whole code needs to be "Minified"
-        - Our whole code needs to be "cached"
-        - Our whole code needs to be "Compressed"
-        - Our whole code need to be "cleaned"......  "Before it can be send to production", So a Bundler helps you to Do all these Things.
+- JSX can only have one parent Element
 
-        Examples of Bundlers 
-            - 1) Webpack
-            - 2) Parcel
-            - 3) vite
-
-- Q4) Whether we need to keep "parcel-cache and dist" folder in ".gitignore"?
-
-    - Yes, - Because we can able to regenerate those files using "npx parcel index.html"
-
-- Q5) Difference Between Caret(^) and Tilde(~)
-
-    - Caret(^) -- "Minor updates", If there are any Minor updates, it will Automatically updates 
-    - Tilde(~) -- "Minor updates", If there are any Minor updates, it will Automatically updates 
-
-- "Package.json" is a "Configuration" for our NPM
-- "node_modules" is like a DataBase, it contains the actual data of that dependencies / of those packages that our project Needs.
-
-- There are 2 types of Dependencies that we can install
-    - dev Dependency
-    - Normal Dependency
-
-- Note:- 
-    - What and all we can Regenerate, Dont keep those in GIT
-
-
-# Parcel
-    - Dev Build
-    - Local Server
-    - HMR = Hot Module Replacement
-    - File Watching Algorithm (written in C++)
-    - Cashing - Faster Builds
-    - Image Optimization
-    - Minification
-    - Bundling
-    - Compress
-    - Consistent Hashing
-    - Code Splitting
-    - Differential Bundling - To Support older browsers
-    - Diagnostics
-    - Error Handling
-    - HTTPs
-    - Tree Shaking - remove unused code
-    - Different dev and prod bundles
-
-# Production Build
-    - To Create Prod Build use -  "npx parcel build index.html"
-    - It will create a "dist" folder - in that 3 files will be generated (from these files only our output displays)
-
-- Browsers List Website link 
-
-    - https://browserslist.dev/
+- React Fragment - Behaves like a Empty Tag
 
