@@ -1,6 +1,19 @@
-.heading {
-    color: red;
-}
-.notes {
-    color: green;
-}
+.header {
+    border: 1px solid;
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 2%;
+  }
+  .Logo {
+    width: 100px;
+  }
+  .nav-items ul {
+    display: flex;
+    list-style-type: none;
+    font-size: 24px;
+  }
+  .nav-items ul li {
+    padding: 10px;
+    margin: 10px;
+  }
+  

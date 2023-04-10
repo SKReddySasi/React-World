@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "This is Namaste React by SKReddySasi",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "start": "parcel index.html"
   },
   "repository": {
     "type": "git",
