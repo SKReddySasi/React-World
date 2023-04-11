@@ -2060,6 +2060,8 @@ const RestaurentCard = (props) => {
     deliveryTime,
     costForTwo,
     cloudinaryImageId,
+    aggregatedDiscountInfo,
+    ribbon,
   } = resData?.data;
   return (
     <div className="res-card">
@@ -2071,11 +2073,20 @@ const RestaurentCard = (props) => {
         }
         alt="res-img"
       />
-      <h2>{name}</h2>
-      <h4>{cuisines.join(", ")}</h4>
-      <h4>{avgRating} Starts</h4>
-      <h4>{deliveryTime} Minutes</h4>
-      <h4>₹{costForTwo / 100} FOR TWO</h4>
+      {ribbon ? <div className="res-promoted">{ribbon[0]?.type}</div> : null}
+
+      <h2 className="res-name">{name}</h2>
+      <h4 className="res-cuisines">{cuisines.join(", ")}</h4>
+      <div className="res-stars-div">
+        <h4>{avgRating} Star</h4>
+        <h4>{deliveryTime} MINS</h4>
+        <h4>₹{costForTwo / 100} FOR TWO</h4>
+      </div>
+      {aggregatedDiscountInfo?.shortDescriptionList[0]?.meta ? (
+        <p className="res-offers">
+          {aggregatedDiscountInfo?.shortDescriptionList[0]?.meta}
+        </p>
+      ) : null}
     </div>
   );
 };
@@ -2083,12 +2094,14 @@ const RestaurentCard = (props) => {
 const Body = () => {
   return (
     <div className="body">
-      <div className="search">
-        <input type="text" />
+      <div className="searchDiv">
+        <input className="input-search" type="text" placeholder="Search for restaurants and food" />
       </div>
       <div className="res-container">
         {resList.map((restaurent) => {
-          return <RestaurentCard key={restaurent.data.id} resData={restaurent} />;
+          return (
+            <RestaurentCard key={restaurent.data.id} resData={restaurent} />
+          );
         })}
       </div>
     </div>
