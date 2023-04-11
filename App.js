@@ -22,7 +22,10 @@ const Header = () => {
 };
 
 const RestaurentCard = () => {
-  return <div className="restaurent-Card"></div>;
+  return <div className="restaurent-Card">
+    <img src="./images/biryani.webp" alt="res-img" />
+    <p>Restaurent Name</p>
+  </div>;
 };
 
 const Body = () => {
