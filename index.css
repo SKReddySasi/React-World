@@ -16,3 +16,20 @@
   padding: 10px;
   margin: 10px;
 }
+.res-card {
+  width: 250px;
+  padding: 10px;
+  margin: 10px 30px;
+}
+.res-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 3%;
+}
+.res-card:hover {
+  cursor: pointer;
+  box-shadow: 0px 0px 8px #ccc;
+}
+.res-img {
+  width: 100%;
+}
