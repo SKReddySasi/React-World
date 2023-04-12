@@ -1,8 +1,12 @@
+import { LOGO_URL } from "../utils/constants";
 const Footer = () => {
   return (
-    <div className="footer">
-      <h1>This is Footer</h1>
-    </div>
+    <footer>
+      <div className="footer">
+        <img className="Logo" src={LOGO_URL} alt="footerLogo" />
+        <p>© 2023 Swiggy</p>
+      </div>
+    </footer>
   );
 };
 
