@@ -1,29 +1,17 @@
-- Passing a Prop to a Component is Just like is Passing an Argument to a Function.
+# There are 2 types of Exports and Imports are There :-
+    - 1) Default Export/Import
+        - export default Component
+        - import Component from "./PATH";
+    - 2) Named Export/Import 
+        - export const Component;
+        - import { Component } from "./PATH"; ( {} - Curly Braces => is must for Named Import )
 
-- Config Driven UI --> Very Very Important
+# React Hooks - (Normal JS utility functons)
+    - useState()
+    - useEffect()
 
--->  A Good Senior Front End Developer is a Very Good UI Layer Engineer and DATA Layer Engineer
+# When Ever a State Variable Changes/Updates, React will Rerender the Component
 
-==> Keys
+# React uses Reconciliation Algorithm, and this Reconciliation Algorithm knows as "REACT FIBER"
 
-    - When ever we do map function, we have to use "key" prop
-
-    - Each child in a list should have a unique "key" prop.
-
-    - Dont use index as Keys (React Official Docs)
-
-    - not using keys (not acceptable) <<<<< index as key <<<<<<<<<<<<<< Unique id (Best Practice)
-
-==> from the below Swiggy's API link we have took the "resList" in App.js file
-
-    - https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.908046&lng=80.209098&page_type=DESKTOP_WEB_LISTING
-
-==> Important topics to know related to Chapter04 - Links Below
-
-    - Destructuring - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
-
-    - Optional Chaining - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining
-
-    - Config Driven UI - https://iamrajatsingh1.medium.com/config-driven-ui-c8e93b730993
-
-    - Lists and Keys - https://legacy.reactjs.org/docs/lists-and-keys.html
+# Virtual DOM is Representaion of Actual DOM

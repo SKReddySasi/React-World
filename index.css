@@ -1,20 +1,40 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Open Sans", sans-serif;
+}
+header {
+  box-shadow: 0 15px 40px -20px rgba(40, 44, 63, 0.15);
+}
 .header {
-  border: 1px solid;
   display: flex;
   justify-content: space-between;
-  padding: 0px 2%;
+  align-items: center;
+  padding: 10px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 .Logo {
-  width: 100px;
+  width: 140px;
+  cursor: pointer;
 }
 .nav-items ul {
   display: flex;
   list-style-type: none;
-  font-size: 24px;
 }
 .nav-items ul li {
   padding: 10px;
   margin: 10px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+.body {
+  max-width: 1200px;
+  margin: 0 auto;
 }
 .res-card {
   width: 250px;
@@ -25,7 +45,7 @@
 .res-container {
   display: flex;
   flex-wrap: wrap;
-  margin: 0 3%;
+  margin: 20px 0px;
 }
 .res-card:hover {
   cursor: pointer;
@@ -92,4 +112,29 @@
 .input-search {
   width: 30%;
   height: 30px;
+  border: 1px solid #ccc;
+  border-right: 0px;
+  border-radius: 8px 0px 0px 8px;
+  padding: 10px;
+}
+.input-search:focus-visible {
+  outline: none;
+}
+.rated-Btn{
+  border: 1px solid #ccc;
+  border-radius: 0 8px 8px 0;
+  padding: 5px 10px;
+  border-left: 0px;
+  cursor: pointer;
+}
+footer {
+  box-shadow: 0 -15px 40px -20px rgba(40, 44, 63, 0.15);
+}
+.footer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
