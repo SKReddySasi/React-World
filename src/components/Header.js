@@ -3,7 +3,9 @@ const Header = () => {
   return (
     <header>
       <div className="header">
-        <img className="Logo" src={LOGO_URL} alt="Logo" />
+        <a href="https://www.swiggy.com/" target="_blank">
+          <img className="Logo" src={LOGO_URL} alt="Logo" />
+        </a>
         <div className="nav-items">
           <ul>
             <li>HOME</li>
