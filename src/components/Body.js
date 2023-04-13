@@ -4,8 +4,52 @@ import { useState } from "react";
 
 const Body = () => {
   const [restaurantList, setRestaurantList] = useState(resList);
-  const [searchText, SearchText] = useState("Sasi");
-  const [text, setText] = useState("All Restaurants");
+  const [searchText, SearchText] = useState("Biryani");
+
+  const handleInitialRestaurants = () => {
+    setRestaurantList(resList);
+  };
+
+  const handleSortClick = () => {
+    const sorted = [...restaurantList];
+    sorted.sort(
+      (a, b) => a.data.deliveryTime.valueOf() - b.data.deliveryTime.valueOf()
+    );
+    setRestaurantList(sorted);
+  };
+
+  const handleRating = () => {
+    const sortedRatings = [...restaurantList];
+    sortedRatings.sort(
+      (a, b) => b.data.avgRating.valueOf() - a.data.avgRating.valueOf()
+    );
+    setRestaurantList(sortedRatings);
+  };
+
+  const handleLowToHigh = () => {
+    const lowToHigh = [...restaurantList];
+    lowToHigh.sort(
+      (a, b) => a.data.costForTwo.valueOf() - b.data.costForTwo.valueOf()
+    );
+    setRestaurantList(lowToHigh);
+  };
+
+  const handleHighToLow = () => {
+    const highToLow = [...restaurantList];
+    highToLow.sort(
+      (a, b) => b.data.costForTwo.valueOf() - a.data.costForTwo.valueOf()
+    );
+    setRestaurantList(highToLow);
+  };
+
+  const handleOffers = () => {
+    const offer = restaurantList.filter(
+      (offer) =>
+        offer?.data?.aggregatedDiscountInfo?.shortDescriptionList[0]?.meta
+    );
+    setRestaurantList(offer);
+  };
+
   return (
     <div className="body">
       <div className="searchDiv">
@@ -25,7 +69,6 @@ const Body = () => {
               (res) => res.data.avgRating > 4.1
             );
             setRestaurantList(filteredRestaurant);
-            setText("Filtered Restaurants");
           }}
         >
           Top Rated Restaurants
@@ -35,11 +78,12 @@ const Body = () => {
         <h2 className="res-count">{restaurantList.length} restaurants</h2>
         <div className="filters">
           <ul>
-            <li>Relevance</li>
-            <li>Delivery Time</li>
-            <li>Rating</li>
-            <li>Cost: Low to High</li>
-            <li>Cost: High to Low</li>
+            <li onClick={handleInitialRestaurants}>Relevance</li>
+            <li onClick={handleSortClick}>Delivery Time</li>
+            <li onClick={handleRating}>Rating</li>
+            <li onClick={handleLowToHigh}>Cost: Low to High</li>
+            <li onClick={handleHighToLow}>Cost: High to Low</li>
+            <li onClick={handleOffers}>Offers</li>
           </ul>
         </div>
       </div>

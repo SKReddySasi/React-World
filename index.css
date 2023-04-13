@@ -29,8 +29,10 @@ header {
   padding: 10px;
   margin: 10px;
   font-size: 0.9rem;
-  font-weight: 500;
   cursor: pointer;
+}
+.nav-items ul li:hover {
+  color: #fc8019;
 }
 .body {
   max-width: 1200px;
@@ -41,6 +43,9 @@ header {
   padding: 20px 20px 50px;
   margin: 10px 20px;
   position: relative;
+}
+.res-card:hover {
+  transform: scale3d(1.03, 1.03, 1);
 }
 .res-container {
   display: flex;
@@ -133,7 +138,7 @@ footer {
 .footer {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 10px 40px;
+  padding: 30px 0px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -164,6 +169,10 @@ footer {
   margin-left: 35px;
   cursor: pointer;
   padding: 10px 0px;
+}
+.filters ul li:hover {
+  color: #3d4152;
+  transform: scale3d(1.03, 1.03, 1);
 }
 .res-count {
   font-weight: 600;
