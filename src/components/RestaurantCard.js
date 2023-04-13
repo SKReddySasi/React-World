@@ -1,5 +1,5 @@
 import { CDN_URL } from "../utils/constants";
-const RestaurentCard = (props) => {
+const RestaurantCard = (props) => {
   const { resData } = props;
   const {
     name,
@@ -36,4 +36,4 @@ const RestaurentCard = (props) => {
   );
 };
 
-export default RestaurentCard;
+export default RestaurantCard;

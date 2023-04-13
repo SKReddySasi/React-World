@@ -15,3 +15,5 @@
 # React uses Reconciliation Algorithm, and this Reconciliation Algorithm knows as "REACT FIBER"
 
 # Virtual DOM is Representaion of Actual DOM
+
+# Hooks are nothing but a Normal Functions

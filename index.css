@@ -13,7 +13,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 40px;
+  padding: 10px 0px;
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -37,7 +37,7 @@ header {
   margin: 0 auto;
 }
 .res-card {
-  width: 250px;
+  width: 260px;
   padding: 20px 20px 50px;
   margin: 10px 20px;
   position: relative;
@@ -120,7 +120,7 @@ header {
 .input-search:focus-visible {
   outline: none;
 }
-.rated-Btn{
+.rated-Btn {
   border: 1px solid #ccc;
   border-radius: 0 8px 8px 0;
   padding: 5px 10px;
@@ -138,3 +138,35 @@ footer {
   align-items: center;
   justify-content: space-between;
 }
+/* filters CSS Starts */
+.filters-div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #e9e9eb;
+}
+.filters ul {
+  display: flex;
+  align-items: center;
+}
+.filters ul li {
+  font-size: 16px;
+  font-weight: 300;
+  text-transform: capitalize;
+  color: #686b78;
+  margin-left: 35px;
+  cursor: pointer;
+  list-style: none;
+  font-size: 16px;
+  font-weight: 300;
+  text-transform: capitalize;
+  color: #686b78;
+  margin-left: 35px;
+  cursor: pointer;
+  padding: 10px 0px;
+}
+.res-count {
+  font-weight: 600;
+  font-size: 28px;
+}
+/* filters CSS Ends */
