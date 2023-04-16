@@ -169,10 +169,20 @@ footer {
   margin-left: 35px;
   cursor: pointer;
   padding: 10px 0px;
+  position: relative;
 }
 .filters ul li:hover {
   color: #3d4152;
   transform: scale3d(1.03, 1.03, 1);
+}
+.filters ul .underlineActive::after {
+  content: "";
+  height: 1px;
+  background: #282c3f;
+  position: absolute;
+  top: 41px;
+  left: 0px;
+  right: 0px;
 }
 .res-count {
   font-weight: 600;
