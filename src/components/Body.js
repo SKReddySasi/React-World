@@ -2,52 +2,89 @@ import RestaurantCard from "./RestaurantCard";
 import resList from "../utils/mockData";
 import { useState } from "react";
 
+function filterData(searchText, restaurantList) {
+  const filteredData = restaurantList.filter((restaurant) =>
+    restaurant.data.name.includes(searchText)
+  );
+  return filteredData;
+}
+
 const Body = () => {
   const [restaurantList, setRestaurantList] = useState(resList);
-  const [searchText, SearchText] = useState("Biryani");
+  const [searchText, SearchText] = useState("");
 
-  const handleInitialRestaurants = () => {
+  const handleInitialRestaurants = (event) => {
     setRestaurantList(resList);
+    const liElements = event.currentTarget.parentNode.querySelectorAll("li");
+    liElements.forEach((li) => {
+      li.classList.remove("underlineActive");
+    });
+    event.currentTarget.classList.add("underlineActive");
   };
 
-  const handleSortClick = () => {
+  const handleSortClick = (event) => {
     const sorted = [...restaurantList];
     sorted.sort(
       (a, b) => a.data.deliveryTime.valueOf() - b.data.deliveryTime.valueOf()
     );
     setRestaurantList(sorted);
+    const liElements = event.currentTarget.parentNode.querySelectorAll("li");
+    liElements.forEach((li) => {
+      li.classList.remove("underlineActive");
+    });
+    event.currentTarget.classList.add("underlineActive");
   };
 
-  const handleRating = () => {
+  const handleRating = (event) => {
     const sortedRatings = [...restaurantList];
     sortedRatings.sort(
       (a, b) => b.data.avgRating.valueOf() - a.data.avgRating.valueOf()
     );
     setRestaurantList(sortedRatings);
+    const liElements = event.currentTarget.parentNode.querySelectorAll("li");
+    liElements.forEach((li) => {
+      li.classList.remove("underlineActive");
+    });
+    event.currentTarget.classList.add("underlineActive");
   };
 
-  const handleLowToHigh = () => {
+  const handleLowToHigh = (event) => {
     const lowToHigh = [...restaurantList];
     lowToHigh.sort(
       (a, b) => a.data.costForTwo.valueOf() - b.data.costForTwo.valueOf()
     );
     setRestaurantList(lowToHigh);
+    const liElements = event.currentTarget.parentNode.querySelectorAll("li");
+    liElements.forEach((li) => {
+      li.classList.remove("underlineActive");
+    });
+    event.currentTarget.classList.add("underlineActive");
   };
 
-  const handleHighToLow = () => {
+  const handleHighToLow = (event) => {
     const highToLow = [...restaurantList];
     highToLow.sort(
       (a, b) => b.data.costForTwo.valueOf() - a.data.costForTwo.valueOf()
     );
     setRestaurantList(highToLow);
+    const liElements = event.currentTarget.parentNode.querySelectorAll("li");
+    liElements.forEach((li) => {
+      li.classList.remove("underlineActive");
+    });
+    event.currentTarget.classList.add("underlineActive");
   };
 
-  const handleOffers = () => {
+  const handleOffers = (event) => {
     const offer = restaurantList.filter(
       (offer) =>
         offer?.data?.aggregatedDiscountInfo?.shortDescriptionList[0]?.meta
     );
     setRestaurantList(offer);
+    const liElements = event.currentTarget.parentNode.querySelectorAll("li");
+    liElements.forEach((li) => {
+      li.classList.remove("underlineActive");
+    });
+    event.currentTarget.classList.add("underlineActive");
   };
 
   return (
@@ -65,13 +102,11 @@ const Body = () => {
         <button
           className="rated-Btn"
           onClick={() => {
-            const filteredRestaurant = restaurantList.filter(
-              (res) => res.data.avgRating > 4.1
-            );
-            setRestaurantList(filteredRestaurant);
+            const data = filterData(searchText, restaurantList);
+            setRestaurantList(data);
           }}
         >
-          Top Rated Restaurants
+          Search
         </button>
       </div>
       <div className="filters-div">
