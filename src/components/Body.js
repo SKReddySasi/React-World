@@ -1,20 +1,35 @@
 import RestaurantCard from "./RestaurantCard";
 import resList from "../utils/mockData";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-function filterData(searchText, restaurantList) {
-  const filteredData = restaurantList.filter((restaurant) =>
-    restaurant.data.name.includes(searchText)
+function filterData(searchText, allRestaurants) {
+  const filteredData = allRestaurants.filter((restaurant) =>
+    restaurant?.data?.name?.toLowerCase()?.includes(searchText.toLowerCase())
   );
   return filteredData;
 }
 
 const Body = () => {
-  const [restaurantList, setRestaurantList] = useState(resList);
+  const [allRestaurants, setAllRestaurants] = useState([]);
+  const [filteredRestaurantList, setFilteredRestaurantList] = useState([]);
   const [searchText, SearchText] = useState("");
 
+  useEffect(() => {
+    getRestaurants();
+  }, []);
+
+  async function getRestaurants() {
+    const data = await fetch(
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.908046&lng=80.209098&page_type=DESKTOP_WEB_LISTING"
+    );
+    const json = await data.json();
+    console.log(json);
+    setAllRestaurants(json?.data?.cards[2]?.data?.data?.cards);
+    setFilteredRestaurantList(json?.data?.cards[2]?.data?.data?.cards);
+  }
+
   const handleInitialRestaurants = (event) => {
-    setRestaurantList(resList);
+    setFilteredRestaurantList(resList);
     const liElements = event.currentTarget.parentNode.querySelectorAll("li");
     liElements.forEach((li) => {
       li.classList.remove("underlineActive");
@@ -23,11 +38,11 @@ const Body = () => {
   };
 
   const handleSortClick = (event) => {
-    const sorted = [...restaurantList];
+    const sorted = [...allRestaurants];
     sorted.sort(
       (a, b) => a.data.deliveryTime.valueOf() - b.data.deliveryTime.valueOf()
     );
-    setRestaurantList(sorted);
+    setFilteredRestaurantList(sorted);
     const liElements = event.currentTarget.parentNode.querySelectorAll("li");
     liElements.forEach((li) => {
       li.classList.remove("underlineActive");
@@ -36,11 +51,11 @@ const Body = () => {
   };
 
   const handleRating = (event) => {
-    const sortedRatings = [...restaurantList];
+    const sortedRatings = [...allRestaurants];
     sortedRatings.sort(
       (a, b) => b.data.avgRating.valueOf() - a.data.avgRating.valueOf()
     );
-    setRestaurantList(sortedRatings);
+    setFilteredRestaurantList(sortedRatings);
     const liElements = event.currentTarget.parentNode.querySelectorAll("li");
     liElements.forEach((li) => {
       li.classList.remove("underlineActive");
@@ -49,11 +64,11 @@ const Body = () => {
   };
 
   const handleLowToHigh = (event) => {
-    const lowToHigh = [...restaurantList];
+    const lowToHigh = [...allRestaurants];
     lowToHigh.sort(
       (a, b) => a.data.costForTwo.valueOf() - b.data.costForTwo.valueOf()
     );
-    setRestaurantList(lowToHigh);
+    setFilteredRestaurantList(lowToHigh);
     const liElements = event.currentTarget.parentNode.querySelectorAll("li");
     liElements.forEach((li) => {
       li.classList.remove("underlineActive");
@@ -62,11 +77,11 @@ const Body = () => {
   };
 
   const handleHighToLow = (event) => {
-    const highToLow = [...restaurantList];
+    const highToLow = [...allRestaurants];
     highToLow.sort(
       (a, b) => b.data.costForTwo.valueOf() - a.data.costForTwo.valueOf()
     );
-    setRestaurantList(highToLow);
+    setFilteredRestaurantList(highToLow);
     const liElements = event.currentTarget.parentNode.querySelectorAll("li");
     liElements.forEach((li) => {
       li.classList.remove("underlineActive");
@@ -75,11 +90,11 @@ const Body = () => {
   };
 
   const handleOffers = (event) => {
-    const offer = restaurantList.filter(
+    const offer = allRestaurants.filter(
       (offer) =>
         offer?.data?.aggregatedDiscountInfo?.shortDescriptionList[0]?.meta
     );
-    setRestaurantList(offer);
+    setFilteredRestaurantList(offer);
     const liElements = event.currentTarget.parentNode.querySelectorAll("li");
     liElements.forEach((li) => {
       li.classList.remove("underlineActive");
@@ -102,15 +117,15 @@ const Body = () => {
         <button
           className="rated-Btn"
           onClick={() => {
-            const data = filterData(searchText, restaurantList);
-            setRestaurantList(data);
+            const data = filterData(searchText, allRestaurants);
+            setFilteredRestaurantList(data);
           }}
         >
           Search
         </button>
       </div>
       <div className="filters-div">
-        <h2 className="res-count">{restaurantList.length} restaurants</h2>
+        <h2 className="res-count">{filteredRestaurantList.length} restaurants</h2>
         <div className="filters">
           <ul>
             <li onClick={handleInitialRestaurants}>Relevance</li>
@@ -123,7 +138,7 @@ const Body = () => {
         </div>
       </div>
       <div className="res-container">
-        {restaurantList.map((restaurant) => {
+        {filteredRestaurantList.map((restaurant) => {
           return (
             <RestaurantCard key={restaurant.data.id} resData={restaurant} />
           );

@@ -1,19 +1,6 @@
-# There are 2 types of Exports and Imports are There :-
-    - 1) Default Export/Import
-        - export default Component
-        - import Component from "./PATH";
-    - 2) Named Export/Import 
-        - export const Component;
-        - import { Component } from "./PATH"; ( {} - Curly Braces => is must for Named Import )
+# Optional Chaining
 
-# React Hooks - (Normal JS utility functons)
-    - useState()
-    - useEffect()
 
-# When Ever a State Variable Changes/Updates, React will Rerender the Component
+# try catch 
 
-# React uses Reconciliation Algorithm, and this Reconciliation Algorithm knows as "REACT FIBER"
-
-# Virtual DOM is Representaion of Actual DOM
-
-# Hooks are nothing but a Normal Functions
+# Conditional Rendering
