@@ -1,19 +1,32 @@
-# There are 2 types of Exports and Imports are There :-
-    - 1) Default Export/Import
-        - export default Component
-        - import Component from "./PATH";
-    - 2) Named Export/Import 
-        - export const Component;
-        - import { Component } from "./PATH"; ( {} - Curly Braces => is must for Named Import )
+# Optional Chaining
 
-# React Hooks - (Normal JS utility functons)
-    - useState()
-    - useEffect()
 
-# When Ever a State Variable Changes/Updates, React will Rerender the Component
+# try catch 
 
-# React uses Reconciliation Algorithm, and this Reconciliation Algorithm knows as "REACT FIBER"
+# Conditional Rendering
 
-# Virtual DOM is Representaion of Actual DOM
+# useState Hook
 
-# Hooks are nothing but a Normal Functions
+    - Never use useState inside "IF Statement"
+    - Never write useState inside a "for Loop" 
+    - Never use useState outside of Functinal Components
+
+# useEffect Hook
+
+    -   useEffect(()=>{
+            console.log("useEffect");
+        }, [])
+
+        - If there are empty [] brackets, the useEffect will call only once after Render.
+
+    -   useEffect(()=>{
+            console.log("useEffect");
+        })
+
+        - If there is No empty [] brackets, the useEffect will call after every Render.
+
+    -   useEffect(()=>{
+            console.log("useEffect");
+        }, [isLoggedIn])
+
+        - If there is Some Dependency [isLoggedIn], the useEffect will call once after Render and when ever my "isLoggedIn" changes.
