@@ -189,3 +189,23 @@ footer {
   font-size: 28px;
 }
 /* filters CSS Ends */
+.noMatch {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 65vh;
+}
+.shimmer-container {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.shimmer {
+  height: 220px;
+  width: 250px;
+  background: rgba(238,240,244,255);
+  margin: 20px;
+}

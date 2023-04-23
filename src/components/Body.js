@@ -1,6 +1,7 @@
 import RestaurantCard from "./RestaurantCard";
 import resList from "../utils/mockData";
 import { useState, useEffect } from "react";
+import Shimmer from "./Shimmer";
 
 function filterData(searchText, allRestaurants) {
   const filteredData = allRestaurants.filter((restaurant) =>
@@ -125,10 +126,19 @@ const Body = () => {
         </button>
       </div>
       <div className="filters-div">
-        <h2 className="res-count">{filteredRestaurantList.length} restaurants</h2>
+        <h2 className="res-count">
+          {filteredRestaurantList.length > 0 ? (
+            <>{filteredRestaurantList.length} restaurants</>
+          ) : (
+            <>Finding restaurants...</>
+          )}
+        </h2>
+
         <div className="filters">
           <ul>
-            <li onClick={handleInitialRestaurants}>Relevance</li>
+            <li className="underlineActive" onClick={handleInitialRestaurants}>
+              Relevance
+            </li>
             <li onClick={handleSortClick}>Delivery Time</li>
             <li onClick={handleRating}>Rating</li>
             <li onClick={handleLowToHigh}>Cost: Low to High</li>
@@ -137,13 +147,18 @@ const Body = () => {
           </ul>
         </div>
       </div>
-      <div className="res-container">
-        {filteredRestaurantList.map((restaurant) => {
-          return (
-            <RestaurantCard key={restaurant.data.id} resData={restaurant} />
-          );
-        })}
-      </div>
+      {filteredRestaurantList.length > 0 ? (
+        <div className="res-container">
+          {filteredRestaurantList.map((restaurant) => {
+            return (
+              <RestaurantCard key={restaurant.data.id} resData={restaurant} />
+            );
+          })}
+        </div>
+      ) : (
+        // <h1 className="noMatch">No match found for "{searchText}"</h1>
+        <Shimmer />
+      )}
     </div>
   );
 };
