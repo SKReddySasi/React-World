@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { LOGO_URL } from "../utils/constants";
+import { Link } from "react-router-dom";
 const Header = () => {
   const [isSignedIn, setIsSignedIn] = useState(false);
   return (
@@ -10,15 +11,21 @@ const Header = () => {
         </a>
         <div className="nav-items">
           <ul>
-            <li>HOME</li>
-            <li>OFFERS</li>
+            <li>
+              <Link to="/">HOME</Link>
+            </li>
+            <li>
+              <Link to="/offers">OFFERS</Link>
+            </li>
             <li>HELP</li>
             {isSignedIn ? (
               <li onClick={() => setIsSignedIn(false)}>SIGN OUT</li>
             ) : (
               <li onClick={() => setIsSignedIn(true)}>SIGN IN</li>
             )}
-            <li>CART</li>
+            <li>
+              <Link to="/Cart">CART</Link>
+            </li>
           </ul>
         </div>
       </div>
