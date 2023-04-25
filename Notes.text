@@ -1,32 +1,4 @@
-# Optional Chaining
+#Outlet
+    - All the Childrens will go into <Outlet /> According to the Route
 
-
-# try catch 
-
-# Conditional Rendering
-
-# useState Hook
-
-    - Never use useState inside "IF Statement"
-    - Never write useState inside a "for Loop" 
-    - Never use useState outside of Functinal Components
-
-# useEffect Hook
-
-    -   useEffect(()=>{
-            console.log("useEffect");
-        }, [])
-
-        - If there are empty [] brackets, the useEffect will call only once after Render.
-
-    -   useEffect(()=>{
-            console.log("useEffect");
-        })
-
-        - If there is No empty [] brackets, the useEffect will call after every Render.
-
-    -   useEffect(()=>{
-            console.log("useEffect");
-        }, [isLoggedIn])
-
-        - If there is Some Dependency [isLoggedIn], the useEffect will call once after Render and when ever my "isLoggedIn" changes.
+- How to read a dynamic URL - Params
