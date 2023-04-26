@@ -217,7 +217,7 @@ footer {
   align-items: center;
   justify-content: space-between;
   color: #ffffff;
-  height: 300px;
+  height: 77vh;
   padding: 0 8%;
 }
 .offersText {
@@ -260,3 +260,12 @@ footer {
   box-shadow: 0 4px 14px #d4d5d9;
 }
 /* Cart Component Ends */
+.linkStylesNone {
+  cursor: unset;
+  color: unset;
+  text-decoration: unset;
+}
+.RestaurantMenuItems {
+  display: flex;
+  flex-wrap: wrap;
+}

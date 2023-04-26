@@ -1,30 +1,49 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { CDN_URL } from "../utils/constants";
+import Shimmer from "./Shimmer";
 
 const RestaurantMenu = () => {
   const params = useParams();
   const { resId } = params;
 
-//   const [restaurants, setRestaurants] = useState(null);
+  const [restaurantMenu, setRestaurantMenu] = useState(null);
 
-//   useEffect(() => {
-//     getRestaurents();
-//   }, []);
+  useEffect(() => {
+    getRestaurentMenu();
+  }, []);
 
-//   async function getRestaurents() {
-//     const data = await fetch(
-//       "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=12.9181997&lng=77.61852859999999&restaurantId=59593"
-//     );
-//     const json = await data.json();
-//     console.log(json);
-//     setRestaurants(json.data)
-//   }
+  async function getRestaurentMenu() {
+    const data = await fetch(
+      "https://www.swiggy.com/dapi/menu/quick?menuId=" + resId
+    );
+    const json = await data.json();
+    setRestaurantMenu(json?.data?.menu?.items);
+  }
+  return !restaurantMenu ? (
+    <Shimmer />
+  ) : (
+    <div className="RestaurantMenuComponent">
+      <h1>Menu</h1>
+      <div className="RestaurantMenuItems">
+        {Object.values(restaurantMenu).map((item) => {
+          return (
+            <div key={item?.id} className="res-card">
+              <img
+                className="res-img"
+                src={CDN_URL + item?.cloudinaryImageId}
+                alt="menu-img"
+              />
 
-  return (
-    <div>
-      <h1>RestaurantMenu : {resId}</h1>
-      <p>Namaste</p>
-      {/* <p>{restaurants?.data?.cards[0]?.card?.card?.info?.name}</p> */}
+              <h2 className="res-name">{item?.name}</h2>
+              <div className="res-stars-div">
+                <h4>Category : {item?.category}</h4>
+                <h4>{item?.price / 100}</h4>
+              </div>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };
