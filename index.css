@@ -1,4 +1,8 @@
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* @import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
 
 * {
   margin: 0;
@@ -34,10 +38,7 @@ header {
 .nav-items ul li:hover {
   color: #fc8019;
 }
-.body {
-  max-width: 1200px;
-  margin: 0 auto;
-}
+
 .res-card {
   width: 260px;
   padding: 20px 20px 50px;
@@ -110,40 +111,12 @@ header {
   left: 0;
   border-width: 9px 0 0 9px;
 }
-.searchDiv {
-  padding: 20px;
-  text-align: center;
-}
-.input-search {
-  width: 30%;
-  height: 30px;
-  border: 1px solid #ccc;
-  border-right: 0px;
-  border-radius: 8px 0px 0px 8px;
-  padding: 10px;
-}
-.input-search:focus-visible {
-  outline: none;
-}
-.rated-Btn {
-  border: 1px solid #ccc;
-  border-radius: 0 8px 8px 0;
-  padding: 5px 10px;
-  border-left: 0px;
-  cursor: pointer;
-}
+
+
 footer {
   box-shadow: 0 -15px 40px -20px rgba(40, 44, 63, 0.15);
 }
-.footer {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 30px 0px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-/* filters CSS Starts */
+
 .filters-div {
   display: flex;
   align-items: center;
@@ -188,7 +161,6 @@ footer {
   font-weight: 600;
   font-size: 28px;
 }
-/* filters CSS Ends */
 .noMatch {
   text-align: center;
   display: flex;
@@ -209,22 +181,8 @@ footer {
   background: rgba(238, 240, 244, 255);
   margin: 20px;
 }
-/* offers Component Start */
 
-.offersComponent {
-  background-color: #005062;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  color: #ffffff;
-  height: 77vh;
-  padding: 0 8%;
-}
-.offersText {
-  font-size: 3rem;
-}
-/* offers Component Ends */
-/* Cart Component Starts */
+
 .cartComponent {
   display: flex;
   justify-content: center;
@@ -233,33 +191,9 @@ footer {
   padding: 30px 0px;
   height: 77vh;
 }
-.cartEmpty {
-  margin-top: 24px;
-  font-size: 20px;
-  font-weight: 600;
-  color: #535665;
-}
-.goToHome {
-  margin-top: 8px;
-  color: #7e808c;
-}
-.resBtn {
-  margin-top: 30px;
-  padding: 11px 20px;
-  text-transform: uppercase;
-  background-color: #fc8019;
-  color: #fff;
-  font-weight: 600;
-  cursor: pointer;
-  border: 0;
-  outline: 0;
-  font-size: 15px;
-  text-align: center;
-}
-.resBtn:hover {
-  box-shadow: 0 4px 14px #d4d5d9;
-}
-/* Cart Component Ends */
+
+
+
 .linkStylesNone {
   cursor: unset;
   color: unset;
@@ -268,4 +202,4 @@ footer {
 .RestaurantMenuItems {
   display: flex;
   flex-wrap: wrap;
-}
+} */

@@ -104,10 +104,10 @@ const Body = () => {
   };
 
   return (
-    <div className="body">
-      <div className="searchDiv">
+    <div className="max-w-[1200] m-auto">
+      <div className="p-5 text-center">
         <input
-          className="input-search"
+          className="h-7 w-[30%] border p-2 focus:outline-none"
           type="text"
           placeholder="Search for restaurants and food"
           value={searchText}
@@ -116,7 +116,7 @@ const Body = () => {
           }}
         />
         <button
-          className="rated-Btn"
+          className="border py-0 px-3 cursor-pointer"
           onClick={() => {
             const data = filterData(searchText, allRestaurants);
             setFilteredRestaurantList(data);

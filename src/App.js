@@ -12,7 +12,7 @@ import RestaurantMenu from "./components/RestaurantMenu";
 
 const AppLayout = () => {
   return (
-    <div className="AppLayout">
+    <div>
       <Header />
       <Outlet />
       <Footer />
