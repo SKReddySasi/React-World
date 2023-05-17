@@ -23,9 +23,9 @@ const RestaurantMenu = () => {
   return !restaurantMenu ? (
     <Shimmer />
   ) : (
-    <div className="RestaurantMenuComponent">
+    <div>
       <h1>Menu</h1>
-      <div className="RestaurantMenuItems">
+      <div className="flex flex-wrap">
         {Object.values(restaurantMenu).map((item) => {
           return (
             <div key={item?.id} className="res-card">
