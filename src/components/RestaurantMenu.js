@@ -23,22 +23,25 @@ const RestaurantMenu = () => {
   return !restaurantMenu ? (
     <Shimmer />
   ) : (
-    <div>
-      <h1>Menu</h1>
-      <div className="flex flex-wrap">
+    <div className="w-[800] m-auto">
+      <h1 className="text-center font-semibold text-4xl">Menu Items</h1>
+      <div className="w-full">
         {Object.values(restaurantMenu).map((item) => {
           return (
-            <div key={item?.id} className="res-card">
-              <img
-                className="res-img"
-                src={CDN_URL + item?.cloudinaryImageId}
-                alt="menu-img"
-              />
-
-              <h2 className="res-name">{item?.name}</h2>
-              <div className="res-stars-div">
-                <h4>Category : {item?.category}</h4>
-                <h4>{item?.price / 100}</h4>
+            <div key={item?.id} className="flex items-center justify-between my-4 border-spacing-1">
+              <div>
+                <h2 className="res-name">{item?.name}</h2>
+                <div className="res-stars-div">
+                  <h4>Category : {item?.category}</h4>
+                  <h4>{item?.price / 100}</h4>
+                </div>
+              </div>
+              <div>
+                <img
+                  className="w-[200]"
+                  src={CDN_URL + item?.cloudinaryImageId}
+                  alt="menu-img"
+                />
               </div>
             </div>
           );

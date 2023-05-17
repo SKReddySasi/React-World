@@ -91,10 +91,7 @@ const Body = () => {
   };
 
   const handleOffers = (event) => {
-    const offer = allRestaurants.filter(
-      (offer) =>
-        offer?.data?.aggregatedDiscountInfo?.shortDescriptionList[0]?.meta
-    );
+    const offer = allRestaurants.filter( (offer) => offer?.data?.aggregatedDiscountInfo?.shortDescriptionList[0]?.meta );
     setFilteredRestaurantList(offer);
     const liElements = event.currentTarget.parentNode.querySelectorAll("li");
     liElements.forEach((li) => {

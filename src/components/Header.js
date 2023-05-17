@@ -18,7 +18,9 @@ const Header = () => {
             <li className="px-2 mx-2 text-sm hover:text-[#fc8019]">
               <Link to="/offers">OFFERS</Link>
             </li>
-            <li className="px-2 mx-2 text-sm">HELP</li>
+            <li className="px-2 mx-2 text-sm hover:text-[#fc8019]">
+              <Link to="/help">HELP</Link>
+            </li>
             {isSignedIn ? (
               <li
                 className="px-2 mx-2 text-sm cursor-pointer hover:text-[#fc8019]"

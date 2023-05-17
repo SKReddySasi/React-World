@@ -9,7 +9,7 @@ const Cart = () => {
       <h5 className="mt-2 text-[#7e808c]">
         You can go to home page to view more restaurants
       </h5>
-      <button className="mt-8 px-5 py-3 uppercase bg-[#fc8019] text-white font-semibold cursor-pointer text-base text-right">See restaurants near you</button>
+      <button className="mt-8 px-5 py-3 uppercase bg-[#fc8019] text-white font-semibold cursor-pointer">See restaurants near you</button>
     </div>
   );
 };
