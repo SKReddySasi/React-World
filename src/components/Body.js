@@ -27,6 +27,7 @@ const Body = () => {
     const json = await data.json();
     setAllRestaurants(json?.data?.cards[2]?.data?.data?.cards);
     setFilteredRestaurantList(json?.data?.cards[2]?.data?.data?.cards);
+    console.log(json?.data?.cards[2]?.data?.data?.cards);
   }
 
   const handleInitialRestaurants = (event) => {
@@ -93,7 +94,7 @@ const Body = () => {
   const handleOffers = (event) => {
     const offer = allRestaurants.filter(
       (offer) =>
-        offer?.data?.aggregatedDiscountInfo?.shortDescriptionList[0]?.meta
+        offer?.data?.ribbon
     );
     setFilteredRestaurantList(offer);
     const liElements = event.currentTarget.parentNode.querySelectorAll("li");
@@ -104,10 +105,10 @@ const Body = () => {
   };
 
   return (
-    <div className="body">
-      <div className="searchDiv">
+    <div className="max-w-[1200] m-auto">
+      <div className="p-5 text-center">
         <input
-          className="input-search"
+          className="h-7 w-[30%] border p-2 focus:outline-none  rounded-s-2xl"
           type="text"
           placeholder="Search for restaurants and food"
           value={searchText}
@@ -116,17 +117,18 @@ const Body = () => {
           }}
         />
         <button
-          className="rated-Btn"
+          className="border p-0 px-3 cursor-pointer rounded-e-2xl"
           onClick={() => {
             const data = filterData(searchText, allRestaurants);
             setFilteredRestaurantList(data);
+            console.log(data)
           }}
         >
           Search
         </button>
       </div>
-      <div className="filters-div">
-        <h2 className="res-count">
+      <div className="flex items-center justify-between border-b py-2">
+        <h2 className="font-semibold text-3xl">
           {filteredRestaurantList.length > 0 ? (
             <>{filteredRestaurantList.length} restaurants</>
           ) : (
@@ -134,25 +136,52 @@ const Body = () => {
           )}
         </h2>
 
-        <div className="filters">
-          <ul>
-            <li className="underlineActive" onClick={handleInitialRestaurants}>
+        <div>
+          <ul className="flex">
+            <li
+              className="underlineActive mx-3 text-[#686b78] hover:text-[#3d4152] cursor-pointer hover:scale-105"
+              onClick={handleInitialRestaurants}
+            >
               Relevance
             </li>
-            <li onClick={handleSortClick}>Delivery Time</li>
-            <li onClick={handleRating}>Rating</li>
-            <li onClick={handleLowToHigh}>Cost: Low to High</li>
-            <li onClick={handleHighToLow}>Cost: High to Low</li>
-            <li onClick={handleOffers}>Offers</li>
+            <li
+              className="px-3 text-[#686b78] hover:text-[#3d4152] cursor-pointer hover:scale-105"
+              onClick={handleSortClick}
+            >
+              Delivery Time
+            </li>
+            <li
+              className="px-3 text-[#686b78] hover:text-[#3d4152] cursor-pointer hover:scale-105"
+              onClick={handleRating}
+            >
+              Rating
+            </li>
+            <li
+              className="px-3 text-[#686b78] hover:text-[#3d4152] cursor-pointer hover:scale-105"
+              onClick={handleLowToHigh}
+            >
+              Cost: Low to High
+            </li>
+            <li
+              className="px-3 text-[#686b78] hover:text-[#3d4152] cursor-pointer hover:scale-105"
+              onClick={handleHighToLow}
+            >
+              Cost: High to Low
+            </li>
+            <li
+              className="px-3 text-[#686b78] hover:text-[#3d4152] cursor-pointer hover:scale-105"
+              onClick={handleOffers}
+            >
+              Offers
+            </li>
           </ul>
         </div>
       </div>
       {filteredRestaurantList.length > 0 ? (
-        <div className="res-container">
+        <div className="flex flex-wrap my-5 mx-0">
           {filteredRestaurantList.map((restaurant) => {
             return (
               <Link
-              className="linkStylesNone"
                 key={restaurant.data.id}
                 to={"/restaurant/" + restaurant?.data?.id}
               >
@@ -162,7 +191,7 @@ const Body = () => {
           })}
         </div>
       ) : (
-        // <h1 className="noMatch">No match found for "{searchText}"</h1>
+        // <h1 className="flex text-center items-center justify-center h-[67vh]">No match found for "{searchText}"</h1>
         <Shimmer />
       )}
     </div>

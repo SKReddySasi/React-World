@@ -1,6 +1,12 @@
-#Outlet
-    - All the Childrens will go into <Outlet /> According to the Route
+# Pros of Tailwindcss
+    - Easy to Debug
+    - Code is Less
+    - Easy to use
+    - No duplicate css
+    - Bundle size is small
+    - Faster development bcz we dont need to switch btw CSS and JS files
 
-- How to read a dynamic URL - Params
+# Cons of Tailwindcss
+    - Initial Learning Curve
+    
 
-# Formik - https://formik.org/ - We can use this for Forms
