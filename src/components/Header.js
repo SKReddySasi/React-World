@@ -31,7 +31,7 @@ const Header = () => {
             {isSignedIn ? (
               <>
                 <li className="px-2 mx-2 text-sm">
-                  <span className="text-[#fc8019] text-xl">{user.name}</span>
+                  <span className="text-[#fc8019] text-xl">{user.user.name}</span>
                 </li>
                 <li
                   className="px-2 mx-2 text-sm cursor-pointer hover:text-[#fc8019]"

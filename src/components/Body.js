@@ -126,7 +126,7 @@ const Body = () => {
         >
           Search
         </button>
-        <input className="border p-2" type="text" value={user.name} onChange={(e)=>{e.target.value}} />
+        {/* <input className="border p-2" type="text" value={user.name} onChange={(e)=>{e.target.value}} /> */}
       </div>
       <div className="flex items-center justify-between border-b py-2">
         <h2 className="font-semibold text-3xl">
