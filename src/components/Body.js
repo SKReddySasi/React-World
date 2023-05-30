@@ -1,8 +1,9 @@
 import RestaurantCard from "./RestaurantCard";
 import resList from "../utils/mockData";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import UserContext from "../utils/UserContext";
 
 function filterData(searchText, allRestaurants) {
   const filteredData = allRestaurants.filter((restaurant) =>
@@ -15,6 +16,8 @@ const Body = () => {
   const [allRestaurants, setAllRestaurants] = useState([]);
   const [filteredRestaurantList, setFilteredRestaurantList] = useState([]);
   const [searchText, SearchText] = useState("");
+
+  const { user } = useContext(UserContext);
 
   useEffect(() => {
     getRestaurants();
@@ -92,10 +95,7 @@ const Body = () => {
   };
 
   const handleOffers = (event) => {
-    const offer = allRestaurants.filter(
-      (offer) =>
-        offer?.data?.ribbon
-    );
+    const offer = allRestaurants.filter((offer) => offer?.data?.ribbon);
     setFilteredRestaurantList(offer);
     const liElements = event.currentTarget.parentNode.querySelectorAll("li");
     liElements.forEach((li) => {
@@ -121,11 +121,12 @@ const Body = () => {
           onClick={() => {
             const data = filterData(searchText, allRestaurants);
             setFilteredRestaurantList(data);
-            console.log(data)
+            console.log(data);
           }}
         >
           Search
         </button>
+        {/* <input className="border p-2" type="text" value={user.name} onChange={(e)=>{e.target.value}} /> */}
       </div>
       <div className="flex items-center justify-between border-b py-2">
         <h2 className="font-semibold text-3xl">
@@ -178,7 +179,7 @@ const Body = () => {
         </div>
       </div>
       {filteredRestaurantList.length > 0 ? (
-        <div className="flex flex-wrap my-5 mx-0">
+        <div className="flex flex-wrap my-5 mx-0 min-h-[62vh]">
           {filteredRestaurantList.map((restaurant) => {
             return (
               <Link
