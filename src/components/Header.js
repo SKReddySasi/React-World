@@ -2,11 +2,16 @@ import { useState, useContext } from "react";
 import { LOGO_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
 import UserContext from "../utils/UserContext";
+import { useSelector } from "react-redux";
+import store from "../utils/store";
 
 const Header = () => {
   const [isSignedIn, setIsSignedIn] = useState(false);
 
   const { user } = useContext(UserContext);
+
+  const cartItems = useSelector((store) => store.cart.items);
+  console.log(cartItems);
 
   return (
     <header className="shadow-md">
@@ -26,12 +31,14 @@ const Header = () => {
               <Link to="/help">HELP</Link>
             </li>
             <li className="px-2 mx-2 text-sm hover:text-[#fc8019]">
-              <Link to="/Cart">CART</Link>
+              <Link to="/Cart">CART - {cartItems.length} Items</Link>
             </li>
             {isSignedIn ? (
               <>
                 <li className="px-2 mx-2 text-sm">
-                  <span className="text-[#fc8019] text-xl">{user.user.name}</span>
+                  <span className="text-[#fc8019] text-xl">
+                    {user.user.name}
+                  </span>
                 </li>
                 <li
                   className="px-2 mx-2 text-sm cursor-pointer hover:text-[#fc8019]"
