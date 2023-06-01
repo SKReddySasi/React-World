@@ -11,10 +11,11 @@ const Header = () => {
   const { user } = useContext(UserContext);
 
   const cartItems = useSelector((store) => store.cart.items);
+
   console.log(cartItems);
 
   return (
-    <header className="shadow-md">
+    <header className="shadow-md sticky top-0 bg-white z-[9999]">
       <div className="header flex justify-between py-4 items-center max-w-[1200] m-auto">
         <a href="https://www.swiggy.com/" target="_blank">
           <img className="w-36 cursor-pointer pl-" src={LOGO_URL} alt="Logo" />
@@ -31,7 +32,9 @@ const Header = () => {
               <Link to="/help">HELP</Link>
             </li>
             <li className="px-2 mx-2 text-sm hover:text-[#fc8019]">
-              <Link to="/Cart">CART - {cartItems.length} Items</Link>
+              <Link to="/Cart">
+                <span className="bg-[#fc8019] text-white p-1 px-2 rounded">{cartItems.length}</span> CART
+              </Link>
             </li>
             {isSignedIn ? (
               <>

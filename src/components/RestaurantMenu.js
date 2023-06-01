@@ -25,8 +25,8 @@ const RestaurantMenu = () => {
 
   const dispatch = useDispatch();
 
-  const handleAddItem = () => {
-    dispatch(addItem("Avocado"));
+  const addFoodItem = (item) => {
+    dispatch(addItem(item));
   };
 
   return !restaurantMenu ? (
@@ -55,7 +55,7 @@ const RestaurantMenu = () => {
                   <div className="relative bottom-6">
                     <button
                       className="px-8 py-2 text-sm border font-bold bg-white text-green-700 rounded-md"
-                      onClick={() => handleAddItem()}
+                      onClick={() => addFoodItem(item)}
                     >
                       ADD
                     </button>

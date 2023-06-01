@@ -30,7 +30,6 @@ const Body = () => {
     const json = await data.json();
     setAllRestaurants(json?.data?.cards[2]?.data?.data?.cards);
     setFilteredRestaurantList(json?.data?.cards[2]?.data?.data?.cards);
-    console.log(json?.data?.cards[2]?.data?.data?.cards);
   }
 
   const handleInitialRestaurants = (event) => {
