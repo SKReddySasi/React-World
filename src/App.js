@@ -11,6 +11,8 @@ import Offers from "./components/Offers";
 import RestaurantMenu from "./components/RestaurantMenu";
 import Help from "./components/Help";
 import UserContext from "./utils/UserContext";
+import { Provider } from "react-redux";
+import store from "./utils/store";
 
 const AppLayout = () => {
   const [user, setUser] = useState({
@@ -20,7 +22,7 @@ const AppLayout = () => {
     },
   });
   return (
-    <div>
+    <Provider store={store}>
       <UserContext.Provider
         value={{
           user: user,
@@ -31,7 +33,7 @@ const AppLayout = () => {
         <Outlet />
         <Footer />
       </UserContext.Provider>
-    </div>
+    </Provider>
   );
 };
 

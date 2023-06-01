@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
+import { addItem } from "../utils/cartSlice";
 import { CDN_URL } from "../utils/constants";
 import Shimmer from "./Shimmer";
 
@@ -20,6 +22,13 @@ const RestaurantMenu = () => {
     const json = await data.json();
     setRestaurantMenu(json?.data?.menu?.items);
   }
+
+  const dispatch = useDispatch();
+
+  const addFoodItem = (item) => {
+    dispatch(addItem(item));
+  };
+
   return !restaurantMenu ? (
     <Shimmer />
   ) : (
@@ -28,20 +37,30 @@ const RestaurantMenu = () => {
       <div className="w-full">
         {Object.values(restaurantMenu).map((item) => {
           return (
-            <div key={item?.id} className="flex items-center justify-between my-4 border-spacing-1">
-              <div>
-                <h2 className="res-name">{item?.name}</h2>
-                <div className="res-stars-div">
+            <div key={item?.id} className="border m-3 py-4 px-4">
+              <div className="flex items-center justify-between">
+                <div className="p-5">
+                  <h2 className="font-bold text-xl">{item?.name}</h2>
                   <h4>Category : {item?.category}</h4>
-                  <h4>{item?.price / 100}</h4>
+                  <h4>₹ {item?.price / 100}</h4>
                 </div>
-              </div>
-              <div>
-                <img
-                  className="w-[200]"
-                  src={CDN_URL + item?.cloudinaryImageId}
-                  alt="menu-img"
-                />
+                <div className="text-center">
+                  <div>
+                    <img
+                      className="w-[200]"
+                      src={CDN_URL + item?.cloudinaryImageId}
+                      alt="menu-img"
+                    />
+                  </div>
+                  <div className="relative bottom-6">
+                    <button
+                      className="px-8 py-2 text-sm border font-bold bg-white text-green-700 rounded-md"
+                      onClick={() => addFoodItem(item)}
+                    >
+                      ADD
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
           );

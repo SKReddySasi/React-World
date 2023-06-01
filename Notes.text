@@ -1,12 +1,30 @@
-# Pros of Tailwindcss
-    - Easy to Debug
-    - Code is Less
-    - Easy to use
-    - No duplicate css
-    - Bundle size is small
-    - Faster development bcz we dont need to switch btw CSS and JS files
+# Creating Store 
 
-# Cons of Tailwindcss
-    - Initial Learning Curve
+    - Create Store
+        - configureStore() - RTK
+
+    - Provide my Store to App
+        - <Provider store={store}> - Import from 'react/redux'
+    
+    - Create a Slice
+        - RTK - createSlice({
+            name: "",
+            initialState:
+            reducers: {
+                addItem: (store, actions) => { store = actions.payload }
+            }
+        })
+
+        export { addItem, removeItem } = cartSlice.actions;
+
+        export default cartSlice.reducer;
+
+    - Put that Slice into Store
+        - {
+            reducer: {
+                cart: cartSlice,
+                user: userSlice,
+            }
+        }
     
 
