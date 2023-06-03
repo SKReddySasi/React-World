@@ -52,7 +52,7 @@ const Cart = () => {
             </h5>
             <Link to="/">
               <button className="mt-8 px-5 py-3 uppercase bg-[#fc8019] text-white font-semibold cursor-pointer">
-                See restaurants...
+                Go to home page
               </button>
             </Link>
           </div>

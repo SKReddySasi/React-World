@@ -104,7 +104,7 @@ const Body = () => {
         </button>
         {/* <input className="border p-2" type="text" value={user.name} onChange={(e)=>{e.target.value}} /> */}
       </div>
-      <div className="flex items-center justify-between border-b py-2">
+      <div className="flex items-center justify-between border-b">
         <h2 className="font-semibold text-3xl">
           {filteredRestaurantList.length > 0 ? (
             <>{filteredRestaurantList.length} restaurants</>
@@ -116,37 +116,37 @@ const Body = () => {
         <div>
           <ul className="flex">
             <li
-              className="underlineActive mx-3 text-[#686b78] hover:text-[#3d4152] cursor-pointer hover:scale-105"
+              className="underlineActive mx-3 py-2 text-[#686b78] hover:text-[#3d4152] cursor-pointer hover:scale-105"
               onClick={handleInitialRestaurants}
             >
               Relevance
             </li>
             <li
-              className="mx-3 text-[#686b78] hover:text-[#3d4152] cursor-pointer hover:scale-105"
+              className="mx-3 py-2 text-[#686b78] hover:text-[#3d4152] cursor-pointer hover:scale-105"
               onClick={handleSortClick}
             >
               Delivery Time
             </li>
             <li
-              className="mx-3 text-[#686b78] hover:text-[#3d4152] cursor-pointer hover:scale-105"
+              className="mx-3 py-2 text-[#686b78] hover:text-[#3d4152] cursor-pointer hover:scale-105"
               onClick={handleRating}
             >
               Rating
             </li>
             <li
-              className="mx-3 text-[#686b78] hover:text-[#3d4152] cursor-pointer hover:scale-105"
+              className="mx-3 py-2 text-[#686b78] hover:text-[#3d4152] cursor-pointer hover:scale-105"
               onClick={handleLowToHigh}
             >
               Cost: Low to High
             </li>
             <li
-              className="mx-3 text-[#686b78] hover:text-[#3d4152] cursor-pointer hover:scale-105"
+              className="mx-3 py-2 text-[#686b78] hover:text-[#3d4152] cursor-pointer hover:scale-105"
               onClick={handleHighToLow}
             >
               Cost: High to Low
             </li>
             <li
-              className="mx-3 text-[#686b78] hover:text-[#3d4152] cursor-pointer hover:scale-105"
+              className="mx-3 py-2 text-[#686b78] hover:text-[#3d4152] cursor-pointer hover:scale-105"
               onClick={handleOffers}
             >
               Offers

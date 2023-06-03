@@ -10,7 +10,7 @@ const FoodItem = ({ name, price, cloudinaryImageId }) => {
 //   };
 
   return (
-    <div className="border m-3 py-4 px-4">
+    <div className="border m-3 pt-4 px-4">
       <div className="flex items-center justify-between">
         <div className="p-5">
           <h2 className="font-bold text-xl">{name}</h2>
@@ -26,7 +26,7 @@ const FoodItem = ({ name, price, cloudinaryImageId }) => {
           </div>
           <div className="relative bottom-6">
             <button
-              className="px-8 py-2 text-sm border font-bold bg-white text-green-700 rounded-md"
+              className="px-6 py-2 text-sm border font-bold bg-white text-green-700 rounded-md"
             //   onClick={() => {
             //     handleRemove();
             //   }}
