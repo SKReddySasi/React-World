@@ -1,5 +1,4 @@
 import RestaurantCard from "./RestaurantCard";
-import resList from "../utils/mockData";
 import { useState, useEffect, useContext } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
@@ -33,7 +32,7 @@ const Body = () => {
   }
 
   const handleInitialRestaurants = (event) => {
-    setFilteredRestaurantList(resList);
+    setFilteredRestaurantList(allRestaurants);
     const liElements = event.currentTarget.parentNode.querySelectorAll("li");
     liElements.forEach((li) => {
       li.classList.remove("underlineActive");
@@ -41,12 +40,13 @@ const Body = () => {
     event.currentTarget.classList.add("underlineActive");
   };
 
-  const handleSortClick = (event) => {
+  // tring for Optimization Code Start
+
+  const sortRestaurants = (sortFunction) => (event) => {
     const sorted = [...allRestaurants];
-    sorted.sort(
-      (a, b) => a.data.deliveryTime.valueOf() - b.data.deliveryTime.valueOf()
-    );
+    sorted.sort(sortFunction);
     setFilteredRestaurantList(sorted);
+
     const liElements = event.currentTarget.parentNode.querySelectorAll("li");
     liElements.forEach((li) => {
       li.classList.remove("underlineActive");
@@ -54,44 +54,21 @@ const Body = () => {
     event.currentTarget.classList.add("underlineActive");
   };
 
-  const handleRating = (event) => {
-    const sortedRatings = [...allRestaurants];
-    sortedRatings.sort(
-      (a, b) => b.data.avgRating.valueOf() - a.data.avgRating.valueOf()
-    );
-    setFilteredRestaurantList(sortedRatings);
-    const liElements = event.currentTarget.parentNode.querySelectorAll("li");
-    liElements.forEach((li) => {
-      li.classList.remove("underlineActive");
-    });
-    event.currentTarget.classList.add("underlineActive");
-  };
+  const handleSortClick = sortRestaurants(
+    (a, b) => a.data.deliveryTime.valueOf() - b.data.deliveryTime.valueOf()
+  );
 
-  const handleLowToHigh = (event) => {
-    const lowToHigh = [...allRestaurants];
-    lowToHigh.sort(
-      (a, b) => a.data.costForTwo.valueOf() - b.data.costForTwo.valueOf()
-    );
-    setFilteredRestaurantList(lowToHigh);
-    const liElements = event.currentTarget.parentNode.querySelectorAll("li");
-    liElements.forEach((li) => {
-      li.classList.remove("underlineActive");
-    });
-    event.currentTarget.classList.add("underlineActive");
-  };
+  const handleRating = sortRestaurants(
+    (a, b) => b.data.avgRating.valueOf() - a.data.avgRating.valueOf()
+  );
+  const handleLowToHigh = sortRestaurants(
+    (a, b) => a.data.costForTwo.valueOf() - b.data.costForTwo.valueOf()
+  );
+  const handleHighToLow = sortRestaurants(
+    (a, b) => b.data.costForTwo.valueOf() - a.data.costForTwo.valueOf()
+  );
 
-  const handleHighToLow = (event) => {
-    const highToLow = [...allRestaurants];
-    highToLow.sort(
-      (a, b) => b.data.costForTwo.valueOf() - a.data.costForTwo.valueOf()
-    );
-    setFilteredRestaurantList(highToLow);
-    const liElements = event.currentTarget.parentNode.querySelectorAll("li");
-    liElements.forEach((li) => {
-      li.classList.remove("underlineActive");
-    });
-    event.currentTarget.classList.add("underlineActive");
-  };
+  // tring for Optimization Code End
 
   const handleOffers = (event) => {
     const offer = allRestaurants.filter((offer) => offer?.data?.ribbon);
@@ -145,31 +122,31 @@ const Body = () => {
               Relevance
             </li>
             <li
-              className="px-3 text-[#686b78] hover:text-[#3d4152] cursor-pointer hover:scale-105"
+              className="mx-3 text-[#686b78] hover:text-[#3d4152] cursor-pointer hover:scale-105"
               onClick={handleSortClick}
             >
               Delivery Time
             </li>
             <li
-              className="px-3 text-[#686b78] hover:text-[#3d4152] cursor-pointer hover:scale-105"
+              className="mx-3 text-[#686b78] hover:text-[#3d4152] cursor-pointer hover:scale-105"
               onClick={handleRating}
             >
               Rating
             </li>
             <li
-              className="px-3 text-[#686b78] hover:text-[#3d4152] cursor-pointer hover:scale-105"
+              className="mx-3 text-[#686b78] hover:text-[#3d4152] cursor-pointer hover:scale-105"
               onClick={handleLowToHigh}
             >
               Cost: Low to High
             </li>
             <li
-              className="px-3 text-[#686b78] hover:text-[#3d4152] cursor-pointer hover:scale-105"
+              className="mx-3 text-[#686b78] hover:text-[#3d4152] cursor-pointer hover:scale-105"
               onClick={handleHighToLow}
             >
               Cost: High to Low
             </li>
             <li
-              className="px-3 text-[#686b78] hover:text-[#3d4152] cursor-pointer hover:scale-105"
+              className="mx-3 text-[#686b78] hover:text-[#3d4152] cursor-pointer hover:scale-105"
               onClick={handleOffers}
             >
               Offers
