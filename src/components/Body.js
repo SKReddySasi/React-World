@@ -40,7 +40,7 @@ const Body = () => {
     event.currentTarget.classList.add("underlineActive");
   };
 
-  // tring for Optimization Code Start
+  // Sorting functions Start
 
   const sortRestaurants = (sortFunction) => (event) => {
     const sorted = [...allRestaurants];
@@ -68,7 +68,7 @@ const Body = () => {
     (a, b) => b.data.costForTwo.valueOf() - a.data.costForTwo.valueOf()
   );
 
-  // tring for Optimization Code End
+  // Sorting functions Ends
 
   const handleOffers = (event) => {
     const offer = allRestaurants.filter((offer) => offer?.data?.ribbon);
