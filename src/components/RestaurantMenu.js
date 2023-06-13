@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { addItem, removeItem } from "../utils/cartSlice";
+import { addToCart, removeFromCart } from "../utils/cartSlice";
 import { CDN_URL } from "../utils/constants";
 import Shimmer from "./Shimmer";
 
@@ -23,14 +23,12 @@ const RestaurantMenu = () => {
     setRestaurantMenu(json?.data?.menu?.items);
   }
 
+  // dispatch
+
   const dispatch = useDispatch();
 
-  const addFoodItem = (item) => {
-    dispatch(addItem(item));
-  };
-
-  const handleRemove = () => {
-    dispatch(removeItem());
+  const handleAddToCart = (item) => {
+    dispatch(addToCart(item));
   };
   
   return !restaurantMenu ? (
@@ -59,12 +57,12 @@ const RestaurantMenu = () => {
                   <div className="relative bottom-6">
                     <button
                       className="px-8 py-2 text-sm border font-bold bg-white text-green-700 rounded-md"
-                      onClick={() => addFoodItem(item)}
+                      onClick={() => handleAddToCart(item)}
                     >
                       ADD
                     </button>
                   </div>
-                  <div className="relative bottom-6">
+                  {/* <div className="relative bottom-6">
                     <div className="w-[48%] m-auto flex justify-between items-center px-3 py-2 text-sm border font-bold bg-white text-green-700 rounded-md">
                       <button
                         className="text-sm text-[#bebfc5]"
@@ -80,7 +78,7 @@ const RestaurantMenu = () => {
                         +
                       </button>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>
