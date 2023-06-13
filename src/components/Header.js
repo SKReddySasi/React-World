@@ -3,16 +3,18 @@ import { LOGO_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
 import UserContext from "../utils/UserContext";
 import { useSelector } from "react-redux";
-import store from "../utils/store";
+import store from '../utils/store';
 
 const Header = () => {
   const [isSignedIn, setIsSignedIn] = useState(false);
 
   const { user } = useContext(UserContext);
 
-  const cartItems = useSelector((store) => store.cart.items);
+  const cartItem = useSelector(store => store.cart.cartItems);
 
-  console.log(cartItems);
+  console.log("Header :", cartItem);
+
+  // console.log(cartItems[3]?.id);
 
   return (
     <header className="shadow-md sticky top-0 bg-white z-[9999]">
@@ -33,7 +35,10 @@ const Header = () => {
             </li>
             <li className="px-2 mx-2 text-sm hover:text-[#fc8019]">
               <Link to="/Cart">
-                <span className="bg-[#fc8019] text-white p-1 px-2 rounded">{cartItems.length}</span> CART
+                CART 
+                <span className="bg-[#fc8019] text-white ml-1 p-1 px-2 rounded">
+                  {cartItem.length}
+                </span>
               </Link>
             </li>
             {isSignedIn ? (

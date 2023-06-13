@@ -1,13 +1,19 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { CDN_URL } from "../utils/constants";
-import { removeItem } from "../utils/cartSlice";
+import { removeFromCart } from "../utils/cartSlice";
 
-const FoodItem = ({ name, price, cloudinaryImageId }) => {
-//   const dispatch = useDispatch();
+const FoodItem = ({ name, price, cloudinaryImageId, id }) => {
 
-//   const handleRemove = () => {
-//     dispatch(removeItem());
-//   };
+  // const itemsInCart = useSelector(state => state.cart.cartItems);
+
+  // console.log("FoodItem : " + itemsInCart);
+
+  const dispatch = useDispatch();
+
+  const handleRemoveFromCart = (id) => {
+    dispatch(removeFromCart(id));
+    console.log("item: ", id);
+  };
 
   return (
     <div className="border m-3 pt-4 px-4">
@@ -27,9 +33,7 @@ const FoodItem = ({ name, price, cloudinaryImageId }) => {
           <div className="relative bottom-6">
             <button
               className="px-6 py-2 text-sm border font-bold bg-white text-green-700 rounded-md"
-            //   onClick={() => {
-            //     handleRemove();
-            //   }}
+              onClick={() => handleRemoveFromCart(id)}
             >
               Remove
             </button>

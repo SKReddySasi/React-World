@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { clearItems } from "../utils/cartSlice";
+import { clearCartItems } from "../utils/cartSlice";
 import { CART_LOGO } from "../utils/constants";
 import store from "../utils/store";
 import UserContext from "../utils/UserContext";
@@ -10,12 +10,20 @@ import FoodItem from "./FoodItem";
 const Cart = () => {
   const { user } = useContext(UserContext);
 
-  const cartItems = useSelector((store) => store.cart.items);
+  const cartItems = useSelector((store) => store.cart.cartItems);
+  const cartTotal = useSelector((store) => store.cart.cartTotal);
+
+  console.log("Cart", cartItems[0]?.price / 100);
+
+  // useEffect( () => {
+  //   const cartItems = useSelector((store) => store.cart.cartItems);
+  //   // const totalCartValue = cartItems
+  // }, [cartItems])
 
   const dispatch = useDispatch();
 
   const clearCart = () => {
-    dispatch(clearItems());
+    dispatch(clearCartItems());
   };
 
   return (
@@ -24,8 +32,9 @@ const Cart = () => {
         <div className="py-4 w-[800] m-auto">
           <div className="flex justify-between py-2">
             <h1 className="font-bold text-3xl">
-              Cart Items - {cartItems.length}
+              Cart Items - {cartItems.length} 
             </h1>
+            <h2 className="font-bold text-xl">Total Amount - {cartTotal}</h2>
             <button
               className="border font-normal text-lg px-4 py-1 text-white bg-red-400 rounded-md"
               onClick={() => {

@@ -84,6 +84,7 @@ const Body = () => {
     <div className="max-w-[1200] m-auto">
       <div className="p-5 text-center">
         <input
+          name="search" // name or id is Needed
           className="h-7 w-[30%] border p-2 focus:outline-none  rounded-s-2xl"
           type="text"
           placeholder="Search for restaurants and food"
