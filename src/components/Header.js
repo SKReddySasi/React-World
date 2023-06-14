@@ -2,19 +2,33 @@ import { useState, useContext } from "react";
 import { LOGO_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
 import UserContext from "../utils/UserContext";
-import { useSelector } from "react-redux";
-import store from '../utils/store';
+import { useSelector, useDispatch } from "react-redux";
+import store from "../utils/store";
+import { logout } from "../utils/authenticationSlice";
 
 const Header = () => {
-  const [isSignedIn, setIsSignedIn] = useState(false);
+  // const [isSignedIn, setIsSignedIn] = useState(false);
 
   const { user } = useContext(UserContext);
 
-  const cartItem = useSelector(store => store.cart.cartItems);
+  const cartItem = useSelector((store) => store.cart.cartItems);
 
   console.log("Header :", cartItem);
 
-  // console.log(cartItems[3]?.id);
+  const handleACtive = (event) => {
+    const liElements = event.currentTarget.parentNode.querySelectorAll("li");
+    liElements.forEach((li) => {
+      li.classList.remove("activeColor");
+    });
+    event.currentTarget.classList.add("activeColor");
+  };
+
+  // SignOut function call
+  const dispatch = useDispatch();
+
+  const handleSignOut = () => {
+    dispatch(logout());
+  }
 
   return (
     <header className="shadow-md sticky top-0 bg-white z-[9999]">
@@ -24,24 +38,43 @@ const Header = () => {
         </a>
         <div>
           <ul className="flex items-center">
-            <li className="px-2 mx-2 text-sm hover:text-[#fc8019]">
+            <li
+              className="activeColor px-2 mx-2 text-sm hover:text-[#fc8019]"
+              onClick={handleACtive}
+            >
               <Link to="/">HOME</Link>
             </li>
-            <li className="px-2 mx-2 text-sm hover:text-[#fc8019]">
+            <li
+              className="px-2 mx-2 text-sm hover:text-[#fc8019]"
+              onClick={handleACtive}
+            >
               <Link to="/offers">OFFERS</Link>
             </li>
-            <li className="px-2 mx-2 text-sm hover:text-[#fc8019]">
+            <li
+              className="px-2 mx-2 text-sm hover:text-[#fc8019]"
+              onClick={handleACtive}
+            >
               <Link to="/help">HELP</Link>
             </li>
-            <li className="px-2 mx-2 text-sm hover:text-[#fc8019]">
+            <li
+              className="px-2 mx-2 text-sm hover:text-[#fc8019]"
+              onClick={handleACtive}
+            >
               <Link to="/Cart">
-                CART 
+                CART
                 <span className="bg-[#fc8019] text-white ml-1 p-1 px-2 rounded">
                   {cartItem.length}
                 </span>
               </Link>
             </li>
-            {isSignedIn ? (
+            <li
+              className="px-2 mx-2 text-sm cursor-pointer hover:text-[#fc8019]"
+              onClick={handleSignOut}
+            >
+              SIGN OUT
+            </li>
+
+            {/* {isSignedIn ? (
               <>
                 <li className="px-2 mx-2 text-sm">
                   <span className="text-[#fc8019] text-xl">
@@ -62,7 +95,7 @@ const Header = () => {
               >
                 SIGN IN
               </li>
-            )}
+            )} */}
           </ul>
         </div>
       </div>

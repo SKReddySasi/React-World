@@ -36,8 +36,10 @@ const Body = () => {
     const liElements = event.currentTarget.parentNode.querySelectorAll("li");
     liElements.forEach((li) => {
       li.classList.remove("underlineActive");
+      li.classList.remove("activeColor");
     });
     event.currentTarget.classList.add("underlineActive");
+    event.currentTarget.classList.add("activeColor");
   };
 
   // Sorting functions Start
@@ -50,8 +52,10 @@ const Body = () => {
     const liElements = event.currentTarget.parentNode.querySelectorAll("li");
     liElements.forEach((li) => {
       li.classList.remove("underlineActive");
+      li.classList.remove("activeColor");
     });
     event.currentTarget.classList.add("underlineActive");
+    event.currentTarget.classList.add("activeColor");
   };
 
   const handleSortClick = sortRestaurants(
@@ -76,8 +80,10 @@ const Body = () => {
     const liElements = event.currentTarget.parentNode.querySelectorAll("li");
     liElements.forEach((li) => {
       li.classList.remove("underlineActive");
+      li.classList.remove("activeColor");
     });
     event.currentTarget.classList.add("underlineActive");
+    event.currentTarget.classList.add("activeColor");
   };
 
   return (
@@ -117,37 +123,37 @@ const Body = () => {
         <div>
           <ul className="flex">
             <li
-              className="underlineActive mx-3 py-2 text-[#686b78] hover:text-[#3d4152] cursor-pointer hover:scale-105"
+              className="activeColor underlineActive mx-3 py-2 text-[#686b78] hover:text-[#fc8019] cursor-pointer hover:scale-105"
               onClick={handleInitialRestaurants}
             >
               Relevance
             </li>
             <li
-              className="mx-3 py-2 text-[#686b78] hover:text-[#3d4152] cursor-pointer hover:scale-105"
+              className="mx-3 py-2 text-[#686b78] hover:text-[#fc8019] cursor-pointer hover:scale-105"
               onClick={handleSortClick}
             >
               Delivery Time
             </li>
             <li
-              className="mx-3 py-2 text-[#686b78] hover:text-[#3d4152] cursor-pointer hover:scale-105"
+              className="mx-3 py-2 text-[#686b78] hover:text-[#fc8019] cursor-pointer hover:scale-105"
               onClick={handleRating}
             >
               Rating
             </li>
             <li
-              className="mx-3 py-2 text-[#686b78] hover:text-[#3d4152] cursor-pointer hover:scale-105"
+              className="mx-3 py-2 text-[#686b78] hover:text-[#fc8019] cursor-pointer hover:scale-105"
               onClick={handleLowToHigh}
             >
               Cost: Low to High
             </li>
             <li
-              className="mx-3 py-2 text-[#686b78] hover:text-[#3d4152] cursor-pointer hover:scale-105"
+              className="mx-3 py-2 text-[#686b78] hover:text-[#fc8019] cursor-pointer hover:scale-105"
               onClick={handleHighToLow}
             >
               Cost: High to Low
             </li>
             <li
-              className="mx-3 py-2 text-[#686b78] hover:text-[#3d4152] cursor-pointer hover:scale-105"
+              className="mx-3 py-2 text-[#686b78] hover:text-[#fc8019] cursor-pointer hover:scale-105"
               onClick={handleOffers}
             >
               Offers

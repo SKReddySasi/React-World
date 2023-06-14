@@ -3,7 +3,7 @@ import { OFFER_LOGO } from "../utils/constants";
 import UserContext from "../utils/UserContext";
 const Offers = () => {
   const { user } = useContext(UserContext);
-  console.log(user.user.name);
+  // console.log(user.user.name);
   return (
     <div className="flex items-center justify-between text-white h-[81vh] py-0 px-[8%] bg-[#005062]">
       <div>
