@@ -8,12 +8,10 @@ import UserContext from "../utils/UserContext";
 import FoodItem from "./FoodItem";
 
 const Cart = () => {
-  const { user } = useContext(UserContext);
+  const user = useContext(UserContext);
 
   const cartItems = useSelector((store) => store.cart.cartItems);
   const cartTotal = useSelector((store) => store.cart.cartTotal);
-
-  console.log("Cart", cartItems[0]?.price / 100);
 
   // useEffect( () => {
   //   const cartItems = useSelector((store) => store.cart.cartItems);
@@ -32,7 +30,7 @@ const Cart = () => {
         <div className="py-4 w-[800] m-auto">
           <div className="flex justify-between py-2">
             <h1 className="font-bold text-3xl">
-              Cart Items - {cartItems.length} 
+              Cart Items - {cartItems.length}
             </h1>
             <h2 className="font-bold text-xl">Total Amount - {cartTotal}</h2>
             <button
@@ -56,8 +54,8 @@ const Cart = () => {
               Your cart is empty
             </h4>
             <h5 className="mt-2 text-[#7e808c]">
-              <span className="text-[#fc8019]">{user.name}</span>, You can go to
-              home page to view more restaurants
+              <span className="text-[#fc8019]">{user}</span>, You can go to home
+              page to view more restaurants
             </h5>
             <Link to="/">
               <button className="mt-8 px-5 py-3 uppercase bg-[#fc8019] text-white font-semibold cursor-pointer">

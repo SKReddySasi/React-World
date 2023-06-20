@@ -9,7 +9,8 @@ import { logout } from "../utils/authenticationSlice";
 const Header = () => {
   // const [isSignedIn, setIsSignedIn] = useState(false);
 
-  const { user } = useContext(UserContext);
+  // const { user } = useContext(UserContext);
+  const user = useContext(UserContext);
 
   const cartItem = useSelector((store) => store.cart.cartItems);
 
