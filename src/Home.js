@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
@@ -13,18 +13,23 @@ import Help from "./components/Help";
 import UserContext from "./utils/UserContext";
 import { Provider } from "react-redux";
 import store from "./utils/store";
+import Login from "./components/Login";
 
-const AppLayout = () => {
-  // const [user, setUser] = useState({
-  //   user: {
-  //     name: "Sasi",
-  //     email: "skreddysasi776@gmail.com",
-  //   },
-  // });
-  const [user, setUser] = useState("Sasi");
+const Home = () => {
+  const [user, setUser] = useState({
+    user: {
+      name: "Sasi",
+      email: "skreddysasi776@gmail.com",
+    },
+  });
   return (
     <Provider store={store}>
-      <UserContext.Provider value={user}>
+      <UserContext.Provider
+        value={{
+          user: user,
+          setUser: setUser,
+        }}
+      >
         <Header />
         <Outlet />
         <Footer />
@@ -36,7 +41,7 @@ const AppLayout = () => {
 const appRouter = createBrowserRouter([
   {
     path: "/",
-    element: <AppLayout />,
+    element: <Home />,
     errorElement: <Error />,
     children: [
       {
