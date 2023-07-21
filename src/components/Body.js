@@ -100,6 +100,7 @@ const Body = () => {
           }}
         />
         <button
+          data-testid="search-btn"
           className="border p-0 px-3 cursor-pointer rounded-e-2xl"
           onClick={() => {
             const data = filterData(searchText, allRestaurants);
@@ -162,7 +163,7 @@ const Body = () => {
         </div>
       </div>
       {filteredRestaurantList.length > 0 ? (
-        <div className="flex flex-wrap my-5 mx-0 min-h-[62vh]">
+        <div className="flex flex-wrap my-5 mx-0 min-h-[62vh]" data-testid="res-list">
           {filteredRestaurantList.map((restaurant) => {
             return (
               <Link

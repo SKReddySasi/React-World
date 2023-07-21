@@ -9,7 +9,7 @@ const Footer = () => {
     <footer className="shadow-top">
       <div className="flex justify-between items-center py-4 max-w-[1200] m-auto">
         <img className="w-36" src={LOGO_URL} alt="footerLogo" />
-        <p>{user}</p>
+        <p data-testid="userName">{user}</p>
         <p>© 2023 Swiggy</p>
       </div>
     </footer>
