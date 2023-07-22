@@ -1,5 +1,6 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const sum = (a, b) => {
-  return a + b;
+    return a + b;
 };
-
-export default sum;
+exports.default = sum;

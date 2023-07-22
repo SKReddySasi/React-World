@@ -1,11 +1,8 @@
-import { createContext } from "react";
-
-const UserContext = createContext({
-  user: "Sasi",
-  // user: {
-  //   name: "Sasi",
-  //   email: "skreddysasi776@gmail.com",
-  // }
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const react_1 = require("react");
+// Create the context with the specified type for the context value
+const UserContext = (0, react_1.createContext)({
+    user: "Sasi",
 });
-
-export default UserContext;
+exports.default = UserContext;
