@@ -27,8 +27,9 @@ const Body = () => {
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.908046&lng=80.209098&page_type=DESKTOP_WEB_LISTING"
     );
     const json = await data.json();
-    setAllRestaurants(json?.data?.cards[2]?.data?.data?.cards);
-    setFilteredRestaurantList(json?.data?.cards[2]?.data?.data?.cards);
+    console.log("Body : ", json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants[0]?.info);
+    setAllRestaurants(json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+    setFilteredRestaurantList(json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
   }
 
   const handleInitialRestaurants = (event) => {
@@ -59,18 +60,18 @@ const Body = () => {
   };
 
   const handleSortClick = sortRestaurants(
-    (a, b) => a.data.deliveryTime.valueOf() - b.data.deliveryTime.valueOf()
+    (a, b) => a.info.sla.deliveryTime.valueOf() - b.info.sla.deliveryTime.valueOf()
   );
 
   const handleRating = sortRestaurants(
-    (a, b) => b.data.avgRating.valueOf() - a.data.avgRating.valueOf()
+    (a, b) => b.info.avgRating.valueOf() - a.info.avgRating.valueOf()
   );
-  const handleLowToHigh = sortRestaurants(
-    (a, b) => a.data.costForTwo.valueOf() - b.data.costForTwo.valueOf()
-  );
-  const handleHighToLow = sortRestaurants(
-    (a, b) => b.data.costForTwo.valueOf() - a.data.costForTwo.valueOf()
-  );
+  // const handleLowToHigh = sortRestaurants(
+  //   (a, b) => a.data.costForTwo.valueOf() - b.data.costForTwo.valueOf()
+  // );
+  // const handleHighToLow = sortRestaurants(
+  //   (a, b) => b.data.costForTwo.valueOf() - a.data.costForTwo.valueOf()
+  // );
 
   // Sorting functions Ends
 
@@ -141,7 +142,7 @@ const Body = () => {
             >
               Rating
             </li>
-            <li
+            {/* <li
               className="mx-3 py-2 text-[#686b78] hover:text-[#fc8019] cursor-pointer hover:scale-105"
               onClick={handleLowToHigh}
             >
@@ -152,7 +153,7 @@ const Body = () => {
               onClick={handleHighToLow}
             >
               Cost: High to Low
-            </li>
+            </li> */}
             <li
               className="mx-3 py-2 text-[#686b78] hover:text-[#fc8019] cursor-pointer hover:scale-105"
               onClick={handleOffers}
@@ -167,8 +168,8 @@ const Body = () => {
           {filteredRestaurantList.map((restaurant) => {
             return (
               <Link
-                key={restaurant.data.id}
-                to={"/restaurant/" + restaurant?.data?.id}
+                key={restaurant?.info.id}
+                to={"/restaurant/" + restaurant?.info?.id}
               >
                 <RestaurantCard resData={restaurant} />
               </Link>
