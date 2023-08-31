@@ -6,7 +6,7 @@ import UserContext from "../utils/UserContext";
 
 function filterData(searchText, allRestaurants) {
   const filteredData = allRestaurants.filter((restaurant) =>
-    restaurant?.data?.name?.toLowerCase()?.includes(searchText.toLowerCase())
+    restaurant?.info?.name.toLowerCase().includes(searchText.toLowerCase())
   );
   return filteredData;
 }
@@ -27,9 +27,17 @@ const Body = () => {
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.908046&lng=80.209098&page_type=DESKTOP_WEB_LISTING"
     );
     const json = await data.json();
-    console.log("Body : ", json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants[0]?.info);
-    setAllRestaurants(json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-    setFilteredRestaurantList(json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+    console.log(
+      "Body : ",
+      json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants[0]?.info
+    );
+    setAllRestaurants(
+      json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
+    setFilteredRestaurantList(
+      json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
   }
 
   const handleInitialRestaurants = (event) => {
@@ -60,7 +68,8 @@ const Body = () => {
   };
 
   const handleSortClick = sortRestaurants(
-    (a, b) => a.info.sla.deliveryTime.valueOf() - b.info.sla.deliveryTime.valueOf()
+    (a, b) =>
+      a.info.sla.deliveryTime.valueOf() - b.info.sla.deliveryTime.valueOf()
   );
 
   const handleRating = sortRestaurants(
@@ -96,6 +105,7 @@ const Body = () => {
           type="text"
           placeholder="Search for restaurants and food"
           value={searchText}
+          autoComplete="off"
           onChange={(e) => {
             SearchText(e.target.value);
           }}
@@ -106,7 +116,6 @@ const Body = () => {
           onClick={() => {
             const data = filterData(searchText, allRestaurants);
             setFilteredRestaurantList(data);
-            console.log(data);
           }}
         >
           Search
@@ -164,7 +173,10 @@ const Body = () => {
         </div>
       </div>
       {filteredRestaurantList.length > 0 ? (
-        <div className="flex flex-wrap my-5 mx-0 min-h-[62vh]" data-testid="res-list">
+        <div
+          className="flex flex-wrap my-5 mx-0 min-h-[62vh]"
+          data-testid="res-list"
+        >
           {filteredRestaurantList.map((restaurant) => {
             return (
               <Link
