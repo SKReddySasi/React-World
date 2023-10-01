@@ -27,17 +27,28 @@ const Body = () => {
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.908046&lng=80.209098&page_type=DESKTOP_WEB_LISTING"
     );
     const json = await data.json();
-    console.log(
-      "Body : ",
-      json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants[0]?.info
-    );
-    setAllRestaurants(
-      json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
-    setFilteredRestaurantList(
-      json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    );
+    console.log("json : ", json)
+    console.log("Body : ", json?.data?.cards);
+    
+    // setAllRestaurants(
+    //   json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    // );
+    // setFilteredRestaurantList(
+    //   json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    // );
+
+    // cards data stored in arrayOfCards
+    const arrayOfCards = json.data.cards; 
+    const restaurant_list = "restaurant_grid_listing"; // having 9 restaurents
+    // const restaurant_list = "top_brands_for_you"; // having 20 restaurents
+    for (const cardObj of arrayOfCards) {
+      if (cardObj.card.card && cardObj.card.card.id === restaurant_list) {
+        const resData =
+          cardObj.card?.card?.gridElements?.infoWithStyle?.restaurants;
+        setAllRestaurants(resData);
+        setFilteredRestaurantList(resData);
+      }
+    }
   }
 
   const handleInitialRestaurants = (event) => {
@@ -97,7 +108,7 @@ const Body = () => {
   };
 
   return (
-    <div className="max-w-[1200] m-auto">
+    <div className="lg:mx-28 sm:mx-14 max-sm:mx-10 m-auto">
       <div className="p-5 text-center">
         <input
           name="search" // name or id is Needed
@@ -124,7 +135,7 @@ const Body = () => {
       </div>
       <div className="flex items-center justify-between border-b">
         <h2 className="font-semibold text-3xl">
-          {filteredRestaurantList.length > 0 ? (
+          {filteredRestaurantList && filteredRestaurantList.length > 0 ? (
             <>{filteredRestaurantList.length} restaurants</>
           ) : (
             <>Finding restaurants...</>
@@ -172,7 +183,7 @@ const Body = () => {
           </ul>
         </div>
       </div>
-      {filteredRestaurantList.length > 0 ? (
+      {filteredRestaurantList && filteredRestaurantList.length > 0 ? (
         <div
           className="flex flex-wrap my-5 mx-0 min-h-[62vh]"
           data-testid="res-list"
@@ -182,6 +193,7 @@ const Body = () => {
               <Link
                 key={restaurant?.info.id}
                 to={"/restaurant/" + restaurant?.info?.id}
+                className="xl:3/12 lg:w-3/12 md:w-6/12 sm:w-full"
               >
                 <RestaurantCard resData={restaurant} />
               </Link>

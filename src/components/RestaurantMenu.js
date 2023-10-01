@@ -8,7 +8,7 @@ import Shimmer from "./Shimmer";
 const RestaurantMenu = () => {
   const params = useParams();
   const { resId } = params;
-
+  
   const [restaurantMenu, setRestaurantMenu] = useState(null);
 
   useEffect(() => {
@@ -16,11 +16,18 @@ const RestaurantMenu = () => {
   }, []);
 
   async function getRestaurentMenu() {
-    const data = await fetch(
-      "https://www.swiggy.com/dapi/menu/quick?menuId=" + resId
-    );
-    const json = await data.json();
-    setRestaurantMenu(json?.data?.menu?.items);
+    try {
+      const data = await fetch(
+        // "https://www.swiggy.com/restaurants/subway-medavakkkam-main-road-medavakkam-chennai-" +
+        //   resId
+        "https://www.swiggy.com/dapi/menu/quick?menuId=" + resId
+      );
+      const json = await data.json();
+      console.log("try block - json : ", json);
+      setRestaurantMenu(json?.data?.menu?.items);
+    } catch (error) {
+      console.log("error while fetching menu data : ", error);
+    }
   }
 
   // dispatch
@@ -30,7 +37,7 @@ const RestaurantMenu = () => {
   const handleAddToCart = (item) => {
     dispatch(addToCart(item));
   };
-  
+
   return !restaurantMenu ? (
     <Shimmer />
   ) : (

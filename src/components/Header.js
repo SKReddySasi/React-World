@@ -33,7 +33,7 @@ const Header = () => {
 
   return (
     <header className="shadow-md sticky top-0 bg-white z-[9999]">
-      <div className="header flex justify-between py-4 items-center max-w-[1200] m-auto">
+      <div className="header flex justify-between py-4 items-center lg:mx-28 md:mx-20 sm:mx-14 max-sm:mx-10">
         <a href="https://www.swiggy.com/" target="_blank">
           <img
             data-testid="logo"
