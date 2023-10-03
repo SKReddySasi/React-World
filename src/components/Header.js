@@ -34,13 +34,14 @@ const Header = () => {
   return (
     <header className="shadow-md sticky top-0 bg-white z-[9999]">
       <div className="header flex justify-between py-4 items-center lg:mx-28 md:mx-20 sm:mx-14 max-sm:mx-10">
-        <a href="https://www.swiggy.com/" target="_blank">
+        <a className="flex items-center" href="https://www.swiggy.com/" target="_blank">
           <img
             data-testid="logo"
-            className="w-36 cursor-pointer pl-"
+            className="w-12 cursor-pointer"
             src={LOGO_URL}
             alt="Logo"
           />
+          <h1 className="text-[#fc8019] font-bold text-2xl">Namaste Food</h1>
         </a>
         <div>
           <ul className="flex items-center">
