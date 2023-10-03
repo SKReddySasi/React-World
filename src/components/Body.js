@@ -39,8 +39,8 @@ const Body = () => {
 
     // cards data stored in arrayOfCards
     const arrayOfCards = json.data.cards; 
-    const restaurant_list = "restaurant_grid_listing"; // having 9 restaurents
-    // const restaurant_list = "top_brands_for_you"; // having 20 restaurents
+    // const restaurant_list = "restaurant_grid_listing"; // having 9 restaurents
+    const restaurant_list = "top_brands_for_you"; // having 20 restaurents
     for (const cardObj of arrayOfCards) {
       if (cardObj.card.card && cardObj.card.card.id === restaurant_list) {
         const resData =
