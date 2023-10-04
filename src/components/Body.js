@@ -174,12 +174,12 @@ const Body = () => {
             >
               Cost: High to Low
             </li> */}
-            <li
+            {/* <li
               className="mx-3 py-2 text-[#686b78] hover:text-[#fc8019] cursor-pointer hover:scale-105"
               onClick={handleOffers}
             >
               Offers
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>
