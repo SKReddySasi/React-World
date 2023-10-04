@@ -27,9 +27,9 @@ const Body = () => {
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.908046&lng=80.209098&page_type=DESKTOP_WEB_LISTING"
     );
     const json = await data.json();
-    console.log("json : ", json)
-    console.log("Body : ", json?.data?.cards);
-    
+    // console.log("json : ", json);
+    // console.log("Body : ", json?.data?.cards);
+
     // setAllRestaurants(
     //   json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     // );
@@ -38,13 +38,15 @@ const Body = () => {
     // );
 
     // cards data stored in arrayOfCards
-    const arrayOfCards = json.data.cards; 
+    const arrayOfCards = json.data.cards;
     // const restaurant_list = "restaurant_grid_listing"; // having 9 restaurents
     const restaurant_list = "top_brands_for_you"; // having 20 restaurents
+
     for (const cardObj of arrayOfCards) {
       if (cardObj.card.card && cardObj.card.card.id === restaurant_list) {
         const resData =
           cardObj.card?.card?.gridElements?.infoWithStyle?.restaurants;
+        console.log("resData : ", resData);
         setAllRestaurants(resData);
         setFilteredRestaurantList(resData);
       }
@@ -86,12 +88,28 @@ const Body = () => {
   const handleRating = sortRestaurants(
     (a, b) => b.info.avgRating.valueOf() - a.info.avgRating.valueOf()
   );
-  // const handleLowToHigh = sortRestaurants(
-  //   (a, b) => a.data.costForTwo.valueOf() - b.data.costForTwo.valueOf()
-  // );
-  // const handleHighToLow = sortRestaurants(
-  //   (a, b) => b.data.costForTwo.valueOf() - a.data.costForTwo.valueOf()
-  // );
+  const handleLowToHigh = sortRestaurants((a, b) => {
+    const matchA = a.info.costForTwo.match(/₹(\d+)/);
+    const matchB = b.info.costForTwo.match(/₹(\d+)/);
+
+    const extractedValueA = matchA ? parseInt(matchA[1], 10) : null;
+    const extractedValueB = matchB ? parseInt(matchB[1], 10) : null;
+
+    return extractedValueA - extractedValueB;
+  });
+  const handleHighToLow = sortRestaurants((a, b) => {
+    // console.log("test");
+    // const valA = (a.info.costForTwo + "").slice(1, 4);
+    // console.log(valA);
+    // const valB = (b.info.costForTwo + "").slice(1, 4);
+    // console.log(valB);
+    const matchA = a.info.costForTwo.match(/₹(\d+)/);
+    const matchB = b.info.costForTwo.match(/₹(\d+)/);
+    const extractedValueA = matchA ? parseInt(matchA[1], 10) : null;
+    const extractedValueB = matchB ? parseInt(matchB[1], 10) : null;
+    return extractedValueB - extractedValueA;
+    // return console.log("result : ", valB - valA);
+  });
 
   // Sorting functions Ends
 
@@ -162,7 +180,7 @@ const Body = () => {
             >
               Rating
             </li>
-            {/* <li
+            <li
               className="mx-3 py-2 text-[#686b78] hover:text-[#fc8019] cursor-pointer hover:scale-105"
               onClick={handleLowToHigh}
             >
@@ -173,7 +191,7 @@ const Body = () => {
               onClick={handleHighToLow}
             >
               Cost: High to Low
-            </li> */}
+            </li>
             {/* <li
               className="mx-3 py-2 text-[#686b78] hover:text-[#fc8019] cursor-pointer hover:scale-105"
               onClick={handleOffers}
