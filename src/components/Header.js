@@ -15,6 +15,7 @@ const Header = () => {
   const cartItem = useSelector((store) => store.cart.cartItems);
 
   console.log("Header :", cartItem);
+  console.log("Heyy");
 
   const handleACtive = (event) => {
     const liElements = event.currentTarget.parentNode.querySelectorAll("li");
@@ -41,7 +42,7 @@ const Header = () => {
             src={LOGO_URL}
             alt="Logo"
           />
-          <h1 className="text-[#fc8019] font-bold text-2xl">Namaste Food</h1>
+          <h1 className="text-[#fc8019] font-bold text-2xl">Namaste Food1111</h1>
         </a>
         <div>
           <ul className="flex items-center">
