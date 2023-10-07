@@ -14,7 +14,7 @@ const Header = () => {
 
   const cartItem = useSelector((store) => store.cart.cartItems);
 
-  console.log("Header :", cartItem);
+  // console.log("Header :", cartItem);
 
   const handleACtive = (event) => {
     const liElements = event.currentTarget.parentNode.querySelectorAll("li");
