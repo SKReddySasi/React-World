@@ -48,15 +48,15 @@ const Body = () => {
 
   useEffect(() => {
     // if (!buttonMode) {
-      console.log("buttonMode");
-      const debounceTimeout = setTimeout(() => {
-        const data = filterData(searchText, allRestaurants);
-        setFilteredRestaurantList(data);
-        console.log("debounce useEffect");
-      }, 300);
-      return () => {
-        clearTimeout(debounceTimeout);
-      };
+    console.log("buttonMode");
+    const debounceTimeout = setTimeout(() => {
+      const data = filterData(searchText, allRestaurants);
+      setFilteredRestaurantList(data);
+      console.log("debounce useEffect");
+    }, 300);
+    return () => {
+      clearTimeout(debounceTimeout);
+    };
     // }
   }, [searchText, allRestaurants]);
 
