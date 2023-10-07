@@ -76,12 +76,12 @@ const Header = () => {
                 </span>
               </Link>
             </li>
-            <li
+            {/* <li
               className="px-2 mx-2 text-sm cursor-pointer hover:text-[#fc8019]"
               onClick={handleSignOut}
             >
               SIGN OUT
-            </li>
+            </li> */}
 
             {/* {isSignedIn ? (
               <>
