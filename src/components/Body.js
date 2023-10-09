@@ -3,6 +3,7 @@ import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import Shimmer from "./Shimmer";
 import UserContext from "../utils/UserContext";
+import axios from "axios";
 
 function filterData(searchText, allRestaurants) {
   const filteredData = allRestaurants.filter((restaurant) =>
@@ -21,30 +22,31 @@ const Body = () => {
   const { user } = useContext(UserContext);
 
   useEffect(() => {
+    const getRestaurants = async () => {
+      try {
+        const response = await axios.get(
+          "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.908046&lng=80.209098&page_type=DESKTOP_WEB_LISTING"
+        );
+        const arrayOfCards = response.data.data.cards;
+        console.log("response.data = ", arrayOfCards);
+        const restaurant_list = "top_brands_for_you"; // having 20 restaurents
+
+        for (const cardObj of arrayOfCards) {
+          if (cardObj.card.card && cardObj.card.card.id === restaurant_list) {
+            const resData =
+              cardObj.card?.card?.gridElements?.infoWithStyle?.restaurants;
+            console.log("resData : ", resData);
+            setAllRestaurants(resData);
+            setFilteredRestaurantList(resData);
+          }
+        }
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
     getRestaurants();
   }, []);
-
-  async function getRestaurants() {
-    const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.908046&lng=80.209098&page_type=DESKTOP_WEB_LISTING"
-    );
-    const json = await data.json();
-    // cards data stored in arrayOfCards
-    const arrayOfCards = json.data.cards;
-    // const restaurant_list = "restaurant_grid_listing"; // having 9 restaurents
-    const restaurant_list = "top_brands_for_you"; // having 20 restaurents
-
-    for (const cardObj of arrayOfCards) {
-      if (cardObj.card.card && cardObj.card.card.id === restaurant_list) {
-        const resData =
-          cardObj.card?.card?.gridElements?.infoWithStyle?.restaurants;
-        console.log("resData : ", resData);
-        setAllRestaurants(resData);
-        setFilteredRestaurantList(resData);
-      }
-    }
-    setLoading(false);
-  }
 
   useEffect(() => {
     // if (!buttonMode) {
