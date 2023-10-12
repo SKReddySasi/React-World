@@ -8,7 +8,7 @@ const RestaurantCard = (props) => {
     costForTwo,
     cloudinaryImageId,
     aggregatedDiscountInfoV3,
-    sla,
+    sla: { deliveryTime }, // We can Destructure like this, if nested objects are there. 
   } = resData?.info;
   return (
     <div className="mx-5 my-3 px-3 py-5 hover:shadow-lg hover:scale-105 hover:rounded-2xl">
@@ -34,7 +34,7 @@ const RestaurantCard = (props) => {
         </h4>
         <div className="text-xs flex justify-between items-center color-[#535665] mt-4">
           <h4>{avgRating} Star</h4>
-          <h4>{sla?.deliveryTime} MINS</h4>
+          <h4>{deliveryTime} MINS</h4>
           <h4>{costForTwo}</h4>
         </div>
       </div>

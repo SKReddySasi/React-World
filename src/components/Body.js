@@ -32,7 +32,10 @@ const Body = () => {
         const restaurant_list = "top_brands_for_you"; // having 20 restaurents
 
         for (const cardObj of arrayOfCards) {
-          if (cardObj.card.card && cardObj.card.card.id === restaurant_list) {
+          if (
+            cardObj?.card?.card &&
+            cardObj?.card?.card?.id === restaurant_list
+          ) {
             const resData =
               cardObj.card?.card?.gridElements?.infoWithStyle?.restaurants;
             console.log("resData : ", resData);
