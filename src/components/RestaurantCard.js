@@ -11,7 +11,7 @@ const RestaurantCard = (props) => {
     sla: { deliveryTime }, // We can Destructure like this, if nested objects are there.
   } = resData?.info;
   return (
-    <div className="mx-5 my-3 px-3 py-5 hover:shadow-lg hover:scale-105 hover:rounded-2xl">
+    <div className="max-sm:flex max-sm:w-full mx-5 my-3 px-3 py-5 hover:shadow-lg hover:scale-105 hover:rounded-2xl">
       {aggregatedDiscountInfoV3?.header &&
       aggregatedDiscountInfoV3?.subHeader ? (
         <h2 className="absolute z-10 rounded-ss-xl rounded-ee-xl text-white px-3 font-bold bg-gradient-to-br from-red-950 to-black">
@@ -21,19 +21,19 @@ const RestaurantCard = (props) => {
         </h2>
       ) : null}
       <img
-        className="relative w-full rounded-2xl"
+        className="relative w-full max-sm:w-[50%] rounded-2xl"
         src={CDN_URL + cloudinaryImageId}
         alt="res-img"
       />
-      <div className="px-3">
-        <h2 className="font-medium break-words text-lg overflow-hidden text-ellipsis whitespace-nowrap mt-1">
+      <div className="px-3 max-sm:w-[50%]">
+        <h2 className="break-words text-lg overflow-hidden text-ellipsis whitespace-nowrap mt-2 font-bold">
           {name}
         </h2>
-        <h4 className="color-[#686b78] text-sm mt-1 overflow-hidden text-ellipsis whitespace-nowrap">
+        <h4><span className="text-green-600">&#9733;</span> {avgRating}</h4>
+        <h4 className="text-sm mt-2 overflow-hidden text-ellipsis whitespace-nowrap">
           {cuisines.join(", ")}
         </h4>
-        <div className="text-xs flex justify-between items-center color-[#535665] mt-4">
-          <h4>{avgRating} Star</h4>
+        <div className="flex text-xs space-x-4 color-[#535665] mt-2">
           <h4>{deliveryTime} MINS</h4>
           <h4>{costForTwo}</h4>
         </div>
