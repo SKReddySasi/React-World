@@ -8,7 +8,7 @@ const RestaurantCard = (props) => {
     costForTwo,
     cloudinaryImageId,
     aggregatedDiscountInfoV3,
-    sla: { deliveryTime }, // We can Destructure like this, if nested objects are there. 
+    sla: { deliveryTime }, // We can Destructure like this, if nested objects are there.
   } = resData?.info;
   return (
     <div className="mx-5 my-3 px-3 py-5 hover:shadow-lg hover:scale-105 hover:rounded-2xl">

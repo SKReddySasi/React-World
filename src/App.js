@@ -5,8 +5,7 @@ import Body from "./components/Body";
 import Footer from "./components/Footer";
 import Cart from "./components/Cart";
 import Error from "./components/Error";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Outlet } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Offers from "./components/Offers";
 import RestaurantMenu from "./components/RestaurantMenu";
 import Help from "./components/Help";
@@ -15,12 +14,6 @@ import { Provider } from "react-redux";
 import store from "./utils/store";
 
 const AppLayout = () => {
-  // const [user, setUser] = useState({
-  //   user: {
-  //     name: "Sasi",
-  //     email: "skreddysasi776@gmail.com",
-  //   },
-  // });
   const [user, setUser] = useState("Sasi");
   return (
     <Provider store={store}>
@@ -52,7 +45,7 @@ const appRouter = createBrowserRouter([
         element: <Cart />,
       },
       {
-        path: "/restaurant/:resId",
+        path: "/restaurants/:resId",
         element: <RestaurantMenu />,
       },
       {

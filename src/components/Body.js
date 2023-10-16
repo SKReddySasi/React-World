@@ -25,7 +25,7 @@ const Body = () => {
     const getRestaurants = async () => {
       try {
         const response = await axios.get(
-          "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.908046&lng=80.209098&page_type=DESKTOP_WEB_LISTING"
+          "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.908046&lng=80.209098"
         );
         const arrayOfCards = response.data.data.cards;
         console.log("response.data = ", arrayOfCards);
@@ -53,11 +53,11 @@ const Body = () => {
 
   useEffect(() => {
     // if (!buttonMode) {
-    console.log("buttonMode");
+    // console.log("buttonMode");
     const debounceTimeout = setTimeout(() => {
       const data = filterData(searchText, allRestaurants);
       setFilteredRestaurantList(data);
-      console.log("debounce useEffect");
+      // console.log("debounce useEffect");
     }, 300);
     return () => {
       clearTimeout(debounceTimeout);
@@ -238,7 +238,7 @@ const Body = () => {
             return (
               <Link
                 key={restaurant?.info.id}
-                to={"/restaurant/" + restaurant?.info?.id}
+                to={"/restaurants/" + restaurant?.info?.id}
                 className="xl:3/12 lg:w-3/12 md:w-6/12 sm:w-full"
               >
                 <RestaurantCard resData={restaurant} />
