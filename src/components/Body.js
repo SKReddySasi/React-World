@@ -132,7 +132,7 @@ const Body = () => {
   };
 
   return (
-    <div className="lg:mx-28 sm:mx-14 max-sm:mx-10 m-auto">
+    <div className="lg:mx-28 sm:mx-14 max-sm:mx-5 m-auto">
       {/* <button
         className="border px-4 py-2 bg-blue-200 rounded-lg flex text-right"
         onClick={() => {
@@ -178,7 +178,7 @@ const Body = () => {
           </button>
         ) : null} */}
       </div>
-      <div className="flex items-center justify-between border-b">
+      <div className="md:flex sm:flex-none items-center justify-between border-b">
         <h2 className="font-semibold text-3xl">
           {filteredRestaurantList && filteredRestaurantList.length > 0 ? (
             <>{filteredRestaurantList.length} restaurants</>
@@ -239,7 +239,7 @@ const Body = () => {
               <Link
                 key={restaurant?.info.id}
                 to={"/restaurants/" + restaurant?.info?.id}
-                className="xl:3/12 lg:w-3/12 md:w-6/12 sm:w-full"
+                className="xl:3/12 lg:w-3/12 md:w-6/12 max-sm:w-full"
               >
                 <RestaurantCard resData={restaurant} />
               </Link>

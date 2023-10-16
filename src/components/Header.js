@@ -34,7 +34,11 @@ const Header = () => {
   return (
     <header className="shadow-md sticky top-0 bg-white z-[9999]">
       <div className="header flex justify-between py-4 items-center lg:mx-28 md:mx-20 sm:mx-14 max-sm:mx-10">
-        <a className="flex items-center" href="https://www.swiggy.com/" target="_blank">
+        <a
+          className="flex items-center"
+          href="https://www.swiggy.com/"
+          target="_blank"
+        >
           <img
             data-testid="logo"
             className="w-12 cursor-pointer"
@@ -57,7 +61,9 @@ const Header = () => {
               className="px-2 mx-2 text-sm hover:text-[#fc8019]"
               onClick={handleACtive}
             >
-              <Link data-testid="offers" to="/offers">OFFERS</Link>
+              <Link data-testid="offers" to="/offers">
+                OFFERS
+              </Link>
             </li>
             <li
               className="px-2 mx-2 text-sm hover:text-[#fc8019]"
@@ -70,10 +76,13 @@ const Header = () => {
               onClick={handleACtive}
             >
               <Link to="/Cart">
-                CART
-                <span data-testid="items-zero" className="bg-[#fc8019] text-white ml-1 p-1 px-2 rounded">
+                <span
+                  data-testid="items-zero"
+                  className="bg-[#fc8019] text-white ml-1 p-1 px-2 rounded"
+                >
                   {cartItem.length}
                 </span>
+                CART
               </Link>
             </li>
             {/* <li

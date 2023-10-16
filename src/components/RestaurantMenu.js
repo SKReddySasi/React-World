@@ -48,7 +48,7 @@ const RestaurantMenu = () => {
   console.log("itemCards", itemCards);
 
   return (
-    <div className="w-[800] m-auto my-8">
+    <div className="w-[800] m-auto my-8 min-h-[71vh]">
       {/* RestairantName, Ratings */}
       <p className="text-xs text-[#93959f]">
         Home / {city} / <span className="text-[#535665]">{name}</span>
