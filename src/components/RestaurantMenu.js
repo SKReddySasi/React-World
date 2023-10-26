@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { addToCart, removeFromCart } from "../utils/cartSlice";
+// import { addToCart, removeFromCart } from "../utils/cartSlice";
 import { CDN_URL } from "../utils/constants";
 import Shimmer from "./Shimmer";
 
 const RestaurantMenu = () => {
   const [resInfo, setResInfo] = useState(null);
+  const [count, setCount] = useState(0);
 
   const params = useParams();
   const { resId } = params; // destructure
@@ -23,7 +24,7 @@ const RestaurantMenu = () => {
       );
       const json = await data.json();
       setResInfo(json.data);
-      console.log("json data: ", json.data)
+      console.log("json data: ", json.data);
     } catch (error) {
       console.log("error while fetching menu data : ", error);
     }
@@ -46,6 +47,14 @@ const RestaurantMenu = () => {
   const { itemCards } =
     resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card;
   console.log("itemCards", itemCards);
+
+  const handleAdd = () => {
+    setCount((prevCount) => prevCount + 1);
+  };
+
+  const handleRemove = () => {
+    setCount((prevCount) => prevCount - 1);
+  };
 
   return (
     <div className="w-[800] m-auto my-8 min-h-[71vh]">
@@ -74,7 +83,9 @@ const RestaurantMenu = () => {
       {/* Items data */}
       <div className="w-full">
         {itemCards ? (
-          <p className="font-bold text-4xl">Items - ( {itemCards?.length} )</p>
+          <p className="font-bold text-2xl">
+            Recommended ( {itemCards?.length} )
+          </p>
         ) : (
           <p className="font-bold text-4xl">
             No Items found for this Restaurant
@@ -83,16 +94,19 @@ const RestaurantMenu = () => {
 
         {itemCards?.map((item) => {
           return (
-            <div key={item?.card?.info?.id} className="border m-3 pt-4 px-4">
-              <div className="flex items-center justify-between">
-                <div className="p-5">
-                  <h2 className="font-bold text-xl">
+            <div key={item?.card?.info?.id} className="border-b my-3 pt-4">
+              <div className="flex items-center justify-between space-x-1">
+                <div className="w-10/12 py-5">
+                  <h2 className="font-semibold text-sm">
                     {item?.card?.info?.name}
                   </h2>
-                  <h4>Category : {item?.card?.info?.category}</h4>
-                  <h4>₹ {item?.card?.info?.price / 100}</h4>
+                  {/* <h4>Category : {item?.card?.info?.category}</h4> */}
+                  <h4 className="text-sm">₹ {item?.card?.info?.price / 100}</h4>
+                  <p className="text-sm text-[#282c3f73] mt-2">
+                    {item?.card?.info?.description}
+                  </p>
                 </div>
-                <div className="text-center">
+                <div className="w-2/12 text-center">
                   <div>
                     <img
                       className="w-[200]"
@@ -100,31 +114,37 @@ const RestaurantMenu = () => {
                       alt="menu-img"
                     />
                   </div>
-                  <div className="relative bottom-6">
-                    <button
-                      className="px-8 py-2 text-sm border font-bold bg-white text-green-700 rounded-md"
-                      onClick={() => handleAddToCart(item)}
-                    >
-                      ADD
-                    </button>
-                  </div>
-                  <div className="relative bottom-6">
-                    <div className="w-[48%] m-auto flex justify-between items-center px-3 py-2 text-sm border font-bold bg-white text-green-700 rounded-md">
+                  {count <= 0 ? (
+                    <div className="relative bottom-6">
                       <button
-                        className="text-sm text-[#bebfc5]"
-                        onClick={() => handleRemove()}
+                        className="px-8 py-2 text-sm border font-bold bg-white text-green-700 rounded-md"
+                        onClick={handleAdd}
+                        // onClick={() => handleAddToCart(item)}
                       >
-                        -
-                      </button>
-                      <span>1</span>
-                      <button
-                        className="text-sm"
-                        onClick={() => addFoodItem(item)}
-                      >
-                        +
+                        ADD
                       </button>
                     </div>
-                  </div>
+                  ) : (
+                    <div className="relative bottom-6">
+                      <div className="w-[70%] m-auto flex justify-between items-center px-3 py-2 text-sm border font-bold bg-white text-green-700 rounded-md">
+                        <button
+                          className="text-sm text-[#bebfc5]"
+                          onClick={handleRemove}
+                          // onClick={() => handleRemove()}
+                        >
+                          -
+                        </button>
+                        <span>{count}</span>
+                        <button
+                          className="text-sm"
+                          onClick={handleAdd}
+                          // onClick={() => addFoodItem(item)}
+                        >
+                          +
+                        </button>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

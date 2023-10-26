@@ -33,7 +33,7 @@ const Header = () => {
 
   return (
     <header className="shadow-md sticky top-0 bg-white z-[9999]">
-      <div className="header flex justify-between py-4 items-center lg:mx-28 md:mx-20 sm:mx-14 max-sm:mx-10">
+      <div className="md:flex sm:flex-none justify-between py-4 items-center lg:mx-28 md:mx-20 sm:mx-14 max-sm:mx-10">
         <a
           className="flex items-center"
           href="https://www.swiggy.com/"
@@ -50,7 +50,7 @@ const Header = () => {
         <div>
           <ul className="flex items-center">
             <li
-              className="activeColor px-2 mx-2 text-sm hover:text-[#fc8019]"
+              className="activeColor px-2 mx-2 text-sm hover:text-[#fc8019] cursor-pointer"
               onClick={handleACtive}
             >
               <Link data-testid="home" to="/">
