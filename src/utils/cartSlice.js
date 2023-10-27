@@ -12,18 +12,24 @@ const cartSlice = createSlice({
 
       state.cartItems.push(item);
 
-      state.cartTotal += item.price / 100;
+      state.cartTotal += item.card.info.price / 100 || item.card.info.defaultPrice / 100;
     },
 
     removeFromCart: (state, action) => {
       const idToRemove = action.payload; // in action.payload we will get the id of the particular item
-      const itemIndex = state.cartItems.findIndex( // in itemIndex we will get the matched Index 
-        (item) => item.id === idToRemove
+      console.log("idToRemove --- ", idToRemove);
+      const itemIndex = state.cartItems.findIndex(
+        // in itemIndex we will get the matched Index
+        (item) => item.card.info.id === idToRemove
       );
-      if (itemIndex !== -1) { // If no match is found, itemIndex will be -1. So if that is not equal to -1, the block of code inside if executed.
-        const removedItem = state.cartItems[itemIndex]; 
+      // console.log("itemIndex ------", itemIndex)
+      if (itemIndex !== -1) {
+        // If no match is found, itemIndex will be -1. So if that is not equal to -1, the block of code inside if executed.
+        const removedItem = state.cartItems[itemIndex];
         state.cartItems.splice(itemIndex, 1);
-        state.cartTotal -= removedItem.price / 100;
+        state.cartTotal -=
+          removedItem.card.info.price / 100 ||
+          removedItem.card.info.defaultPrice / 100;
       }
     },
 

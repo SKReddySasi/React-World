@@ -12,6 +12,9 @@ const Cart = () => {
 
   const cartItems = useSelector((store) => store.cart.cartItems);
   const cartTotal = useSelector((store) => store.cart.cartTotal);
+  console.log("cart total : ", cartTotal);
+  const twoDecimalValue = cartTotal.toFixed(2);
+  console.log("cart decimal total : ", twoDecimalValue);
 
   // useEffect( () => {
   //   const cartItems = useSelector((store) => store.cart.cartItems);
@@ -32,7 +35,9 @@ const Cart = () => {
             <h1 className="font-bold text-3xl">
               Cart Items - {cartItems.length}
             </h1>
-            <h2 className="font-bold text-xl">Total Amount - {cartTotal}</h2>
+            <h2 className="font-bold text-xl">
+              Total Amount - {cartTotal.toFixed(2)}
+            </h2>
             <button
               className="border font-normal text-lg px-4 py-1 text-white bg-red-400 rounded-md"
               onClick={() => {
@@ -45,6 +50,7 @@ const Cart = () => {
           {cartItems.map((item) => {
             return <FoodItem key={item.id} {...item} />;
           })}
+
         </div>
       ) : (
         <div className="flex justify-center flex-col items-center px-8 h-[81vh]">
