@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-// import { useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
-// import { addToCart, removeFromCart } from "../utils/cartSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useParams } from "react-router-dom";
+import { addToCart, removeFromCart } from "../utils/cartSlice";
 import { CDN_URL } from "../utils/constants";
 import Shimmer from "./Shimmer";
 
@@ -11,6 +11,9 @@ const RestaurantMenu = () => {
 
   const params = useParams();
   const { resId } = params; // destructure
+
+  const cartItems = useSelector((store) => store.cart.cartItems);
+  const cartTotal = useSelector((store) => store.cart.cartTotal);
 
   useEffect(() => {
     getRestaurentMenu();
@@ -26,7 +29,7 @@ const RestaurantMenu = () => {
       setResInfo(json.data);
       console.log("json data: ", json.data);
     } catch (error) {
-      console.log("error while fetching menu data : ", error);
+      // console.log("error while fetching menu data : ", error);
     }
   };
 
@@ -42,18 +45,24 @@ const RestaurantMenu = () => {
     costForTwoMessage,
     sla: { deliveryTime },
   } = resInfo?.cards[0].card.card.info;
-  console.log("res details : ", resInfo?.cards[0]?.card?.card?.info);
-  console.log("name : ", name);
   const { itemCards } =
     resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card;
-  console.log("itemCards", itemCards);
 
-  const handleAdd = () => {
+  const handleAdd = (e) => {
     setCount((prevCount) => prevCount + 1);
+    // console.log("add : ", e.target.value);
   };
 
   const handleRemove = () => {
     setCount((prevCount) => prevCount - 1);
+  };
+
+  // dispatch
+
+  const dispatch = useDispatch();
+
+  const handleAddToCart = (item) => {
+    dispatch(addToCart(item));
   };
 
   return (
@@ -101,25 +110,33 @@ const RestaurantMenu = () => {
                     {item?.card?.info?.name}
                   </h2>
                   {/* <h4>Category : {item?.card?.info?.category}</h4> */}
-                  <h4 className="text-sm">₹ {item?.card?.info?.price / 100}</h4>
+                  <h4 className="text-sm">
+                    ₹{" "}
+                    {item?.card?.info?.price / 100 ||
+                      item?.card?.info?.defaultPrice / 100}
+                  </h4>
                   <p className="text-sm text-[#282c3f73] mt-2">
                     {item?.card?.info?.description}
                   </p>
                 </div>
                 <div className="w-2/12 text-center">
                   <div>
-                    <img
-                      className="w-[200]"
-                      src={CDN_URL + item?.card?.info?.imageId}
-                      alt="menu-img"
-                    />
+                    {item?.card?.info?.imageId ? (
+                      <img
+                        className="w-[200]"
+                        src={CDN_URL + item?.card?.info?.imageId}
+                        alt="menu-img"
+                      />
+                    ) : (
+                      <div className="bg-slate-200 w-[100%] h-[90px]"></div> // In the Absense of Item Image
+                    )}
                   </div>
                   {count <= 0 ? (
                     <div className="relative bottom-6">
                       <button
                         className="px-8 py-2 text-sm border font-bold bg-white text-green-700 rounded-md"
-                        onClick={handleAdd}
-                        // onClick={() => handleAddToCart(item)}
+                        // onClick={handleAdd}
+                        onClick={() => handleAddToCart(item)}
                       >
                         ADD
                       </button>
@@ -151,6 +168,17 @@ const RestaurantMenu = () => {
           );
         })}
       </div>
+      {cartItems.length > 0 ? (
+        <Link to="/cart">
+          <div className="bg-[#60b246] text-white flex justify-between p-4 sticky bottom-0">
+            <div className="text-sm font-semibold">
+              <span>{cartItems.length} Item</span> |{" "}
+              <span>₹{cartTotal.toFixed(2)}</span>
+            </div>
+            <div className="font-bold text-sm">VIEW CART</div>
+          </div>
+        </Link>
+      ) : null}
     </div>
   );
 };

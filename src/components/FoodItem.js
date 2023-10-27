@@ -2,17 +2,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { CDN_URL } from "../utils/constants";
 import { removeFromCart } from "../utils/cartSlice";
 
-const FoodItem = ({ name, price, cloudinaryImageId, id }) => {
+const FoodItem = (item) => {
+  const { name, price, imageId, id } = item.card.info;
 
   // const itemsInCart = useSelector(state => state.cart.cartItems);
-
   // console.log("FoodItem : " + itemsInCart);
 
   const dispatch = useDispatch();
 
   const handleRemoveFromCart = (id) => {
     dispatch(removeFromCart(id));
-    console.log("item: ", id);
+    console.log("item id for remove - : ", id);
   };
 
   return (
@@ -24,11 +24,7 @@ const FoodItem = ({ name, price, cloudinaryImageId, id }) => {
         </div>
         <div className="text-center">
           <div>
-            <img
-              className="w-[200]"
-              src={CDN_URL + cloudinaryImageId}
-              alt="menu-img"
-            />
+            <img className="w-[200]" src={CDN_URL + imageId} alt="menu-img" />
           </div>
           <div className="relative bottom-6">
             <button
