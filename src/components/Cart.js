@@ -30,7 +30,7 @@ const Cart = () => {
   return (
     <>
       {cartItems.length > 0 ? (
-        <div className="py-4 w-[800] m-auto">
+        <div className="py-4 w-[800] m-auto min-h-[80vh]">
           <div className="flex justify-between py-2">
             <h1 className="font-bold text-3xl">
               Cart Items - {cartItems.length}
