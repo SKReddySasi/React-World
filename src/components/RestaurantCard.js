@@ -14,11 +14,17 @@ const RestaurantCard = (props) => {
     <div className="max-sm:flex max-sm:w-full mx-5 my-3 px-3 py-5 hover:shadow-lg hover:scale-105 hover:rounded-2xl">
       {aggregatedDiscountInfoV3?.header &&
       aggregatedDiscountInfoV3?.subHeader ? (
-        <h2 className="absolute z-10 rounded-ss-xl rounded-ee-xl text-white px-3 font-bold bg-gradient-to-br from-red-950 to-black">
-          {aggregatedDiscountInfoV3?.header +
-            " " +
-            aggregatedDiscountInfoV3?.subHeader}
-        </h2>
+        <>
+          <h2 className="hidden md:block absolute z-10 rounded-ss-xl rounded-ee-xl text-white px-3 font-bold bg-gradient-to-br from-red-950 to-black">
+            {aggregatedDiscountInfoV3?.header +
+              aggregatedDiscountInfoV3?.subHeader}
+          </h2>
+
+          <div className="block md:hidden absolute z-10 rounded-ss-xl rounded-ee-xl text-white px-3 font-bold bg-gradient-to-br from-red-950 to-black">
+            <p>{aggregatedDiscountInfoV3?.header}</p>
+            <p>{aggregatedDiscountInfoV3?.subHeader}</p>
+          </div>
+        </>
       ) : null}
       <img
         className="relative w-full max-sm:w-[50%] rounded-2xl"
@@ -29,7 +35,9 @@ const RestaurantCard = (props) => {
         <h2 className="break-words text-lg overflow-hidden text-ellipsis whitespace-nowrap mt-2 font-bold">
           {name}
         </h2>
-        <h4><span className="text-green-600">&#9733;</span> {avgRating}</h4>
+        <h4>
+          <span className="text-green-600">&#9733;</span> {avgRating}
+        </h4>
         <h4 className="text-sm mt-2 overflow-hidden text-ellipsis whitespace-nowrap">
           {cuisines.join(", ")}
         </h4>
