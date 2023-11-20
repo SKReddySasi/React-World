@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import store from "../utils/store";
 import { logout } from "../utils/authenticationSlice";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
+import { FaShoppingCart } from "react-icons/fa";
 
 const Header = () => {
   const [nav, setNav] = useState(false);
@@ -19,6 +20,7 @@ const Header = () => {
   const user = useContext(UserContext);
 
   const cartItem = useSelector((store) => store.cart.cartItems);
+  console.log("cartItem", cartItem);
 
   // console.log("Header :", cartItem);
 
@@ -81,14 +83,16 @@ const Header = () => {
               className="px-2 mx-2 text-sm hover:text-[#fc8019]"
               onClick={handleACtive}
             >
-              <Link to="/Cart">
-                <span
-                  data-testid="items-zero"
-                  className="bg-[#fc8019] text-white ml-1 p-1 px-2 rounded"
-                >
-                  {cartItem.length}
-                </span>
-                CART
+              <Link className="flex items-center" to="/Cart">
+                <FaShoppingCart size={20} />
+                {cartItem && cartItem.length > 0 ? (
+                  <span
+                    data-testid="items-zero"
+                    className="bg-[#fc8019] text-white ml-1 px-2 rounded-full"
+                  >
+                    {cartItem.length}
+                  </span>
+                ) : null}
               </Link>
             </li>
           </ul>
